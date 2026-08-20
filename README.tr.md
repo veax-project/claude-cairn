@@ -19,7 +19,7 @@ npx claude-cairn
 Bu komut yukarıdaki ekranı açar. Siz bir şey seçmeden hiçbir şey değişmez.
 
 **Terminal kullanmakta rahat değil misiniz?**
-[Cairn.cmd](https://github.com/veax-project/claude-cairn/releases/latest/download/Cairn.cmd)
+[Cairn.cmd](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd)
 dosyasını indirip çift tıklayın. Aynı işi yapar ve eksik bir şey varsa neyi
 kurmanız gerektiğini söyler.
 
