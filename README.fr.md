@@ -11,7 +11,7 @@ Sauvegardées avant que Claude ne les supprime, et partagées avec chaque compte
 
 <br>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-D97757?style=flat-square)](LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-D97757?style=flat-square)](LICENSE)
 [![For Claude Code](https://img.shields.io/badge/for-Claude%20Code-1B1B1F?style=flat-square)](https://claude.com/claude-code)
 [![Dependencies: none](https://img.shields.io/badge/dependencies-none-3A3A44?style=flat-square)](#-où-vont-vos-données)
 [![No network calls](https://img.shields.io/badge/network%20calls-none-3A3A44?style=flat-square)](#-où-vont-vos-données)
@@ -229,6 +229,6 @@ sept tailles de fenêtre pour repérer les défauts de mise en page.
 
 <div align="center">
 
-**MIT** · Construit parce que changer de compte ne devrait pas vous coûter votre travail.
+**GPL-3.0** · Construit parce que changer de compte ne devrait pas vous coûter votre travail.
 
 </div>

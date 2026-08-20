@@ -1,3 +1,6 @@
+// Cairn - https://github.com/veax-project/claude-cairn
+// Copyright (C) 2026 veax-project. Licensed under the GNU GPL v3 or later.
+
 /**
  * MCP server (stdio, JSON-RPC 2.0).
  *

@@ -11,7 +11,7 @@ Claude onları silmeden önce kaydedilir, giriş yaptığınız her hesapta kar�
 
 <br>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-D97757?style=flat-square)](LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-D97757?style=flat-square)](LICENSE)
 [![For Claude Code](https://img.shields.io/badge/for-Claude%20Code-1B1B1F?style=flat-square)](https://claude.com/claude-code)
 [![Dependencies: none](https://img.shields.io/badge/dependencies-none-3A3A44?style=flat-square)](#-where-your-data-goes)
 [![No network calls](https://img.shields.io/badge/network%20calls-none-3A3A44?style=flat-square)](#-where-your-data-goes)
@@ -224,6 +224,6 @@ benzetilmiş bir terminalde yedi farklı pencere boyutunda yeniden çiziyor.
 
 <div align="center">
 
-**MIT** · Hesap değiştirmek, yaptığınız işe mal olmasın diye yapıldı.
+**GPL-3.0** · Hesap değiştirmek, yaptığınız işe mal olmasın diye yapıldı.
 
 </div>

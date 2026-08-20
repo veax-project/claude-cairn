@@ -1,3 +1,6 @@
+// Cairn - https://github.com/veax-project/claude-cairn
+// Copyright (C) 2026 veax-project. Licensed under the GNU GPL v3 or later.
+
 /**
  * Full-text index over the vault, built on the SQLite that ships inside Node.
  * No native module, no compile step, no dependency.

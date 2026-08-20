@@ -1,3 +1,6 @@
+// Cairn - https://github.com/veax-project/claude-cairn
+// Copyright (C) 2026 veax-project. Licensed under the GNU GPL v3 or later.
+
 /**
  * Runs the real interface against a fake terminal and returns what a real
  * terminal would be showing: a grid of characters, each with its colour.

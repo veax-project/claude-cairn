@@ -11,7 +11,7 @@ Saved before Claude deletes them, and shared with every account you sign into.
 
 <br>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-D97757?style=flat-square)](LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-D97757?style=flat-square)](LICENSE)
 [![For Claude Code](https://img.shields.io/badge/for-Claude%20Code-1B1B1F?style=flat-square)](https://claude.com/claude-code)
 [![Dependencies: none](https://img.shields.io/badge/dependencies-none-3A3A44?style=flat-square)](#-where-your-data-goes)
 [![No network calls](https://img.shields.io/badge/network%20calls-none-3A3A44?style=flat-square)](#-where-your-data-goes)
@@ -225,6 +225,6 @@ terminal at seven window sizes to catch layout faults.
 
 <div align="center">
 
-**MIT** · Built because switching accounts should not cost you your work.
+**GPL-3.0** · Built because switching accounts should not cost you your work.
 
 </div>

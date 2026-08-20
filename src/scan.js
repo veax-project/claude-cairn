@@ -1,3 +1,6 @@
+// Cairn - https://github.com/veax-project/claude-cairn
+// Copyright (C) 2026 veax-project. Licensed under the GNU GPL v3 or later.
+
 /**
  * Discovery: find every account, every session index entry, and every
  * transcript currently present on this machine, then join them together.

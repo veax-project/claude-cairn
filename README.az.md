@@ -11,7 +11,7 @@ Claude onları silməmişdən əvvəl saxlanılır, daxil olduğunuz hər hesabd
 
 <br>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-D97757?style=flat-square)](LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-D97757?style=flat-square)](LICENSE)
 [![For Claude Code](https://img.shields.io/badge/for-Claude%20Code-1B1B1F?style=flat-square)](https://claude.com/claude-code)
 [![Dependencies: none](https://img.shields.io/badge/dependencies-none-3A3A44?style=flat-square)](#-where-your-data-goes)
 [![No network calls](https://img.shields.io/badge/network%20calls-none-3A3A44?style=flat-square)](#-where-your-data-goes)
@@ -228,6 +228,6 @@ yenidən çəkir.
 
 <div align="center">
 
-**MIT** · Hesab dəyişəndə işinizi itirməməlisiniz deyə hazırlanıb.
+**GPL-3.0** · Hesab dəyişəndə işinizi itirməməlisiniz deyə hazırlanıb.
 
 </div>

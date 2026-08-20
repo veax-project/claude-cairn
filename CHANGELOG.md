@@ -1,5 +1,9 @@
 # Changelog
 
+> Cairn is licensed under the **GNU GPL v3 or later**. You may read, use and
+> modify it freely; a modified version you distribute must stay open under the
+> same terms.
+
 ## 1.0.0-beta.1
 
 First public release. Everything below is verified end-to-end on a real
