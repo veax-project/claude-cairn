@@ -12,16 +12,41 @@ Başqa bir Claude hesabına daxil oldunuz və söhbətləriniz yoxa çıxdı. Ə
 heç yerə getməyiblər. Cairn onları geri qaytarır və bunun bir də təkrarlanmasına
 imkan vermir.
 
+---
+
+## Quraşdırma
+
+### Windows
+
+**1.** [**⬇ Cairn.cmd faylını yükləyin**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd) — brauzeriniz faylı saxlamaq istədiyinizi soruşa bilər. Saxlayın.
+
+**2.** İndicə yüklədiyiniz fayla **iki dəfə klikləyin**.
+
+**3.** Yuxarıdakı ekran açılır. **`1`** düyməsini basın və bir neçə saniyə gözləyin.
+
+**4.** **Claude-u tamamilə bağlayın** və yenidən açın.
+
+Hazırdır. Söhbətləriniz yan panelə qayıdıb.
+
+> **Claude-u niyə bağlayıb yenidən açmaq lazımdır?** Claude söhbət siyahısını
+> yalnız bir dəfə — açılanda oxuyur. Cairn həmin siyahıya yaza bilir, amma Claude
+> bunu ancaq növbəti açılışda görəcək.
+
+Sonra onu bir daha işə salın və avtomatik sinxronizasiyanı qoşmaq üçün **`3`**
+düyməsini basın: beləcə bunu bir daha etməli olmayacaqsınız.
+
+> Cairn-in işləməsi üçün [Node.js](https://nodejs.org) lazımdır — əksər
+> developerlərdə o, artıq var. Sizdə yoxdursa, pəncərə bunu sizə bildirir və
+> haradan götürəcəyinizi göstərir. **LTS** işarəli versiyanı quraşdırın, sonra
+> Cairn.cmd faylına yenidən iki dəfə klikləyin.
+
+### Mac, Linux, yaxud terminala üstünlük verirsinizsə
+
 ```bash
 npx claude-cairn
 ```
 
-Bu komanda yuxarıdakı ekranı açır. Siz nəyisə seçməyincə heç nə dəyişmir.
-
-**Terminaldən istifadə sizə çətindirmi?**
-[Cairn.cmd](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd)
-faylını yükləyib iki dəfə klikləyin. Eyni işi görür və nəyisə quraşdırmaq
-lazımdırsa, bunu sizə bildirir.
+Eyni ekran, eyni addımlar.
 
 ---
 
@@ -51,34 +76,6 @@ oradadır. Geri qayıdın: aralıqda gördüyünüz iş də oradadır.
 **Göz qoyur.** Avtomatik sinxronizasiyanı qoşun: yuxarıdakı iki iş, kompüteriniz
 açılan andan başlayaraq hər on dəqiqədən bir öz-özünə görülür. Bir daha bu barədə
 düşünməyəcəksiniz.
-
----
-
-## İlk addımlar
-
-İşə salın:
-
-```bash
-npx claude-cairn
-```
-
-Sinxronizasiya üçün **1** düyməsini basın, sonra **Claude-u yenidən başladın**.
-Söhbətləriniz yan panelə qayıdacaq.
-
-Sonra avtomatik sinxronizasiyanı qoşmaq üçün **3** düyməsini basın: beləcə bu,
-əl ilə nəsə etməli olduğunuz son dəfə olacaq.
-
-> **Claude-u niyə yenidən başlatmaq lazımdır?** Claude söhbət siyahısını yalnız
-> bir dəfə — açılanda oxuyur. Cairn həmin siyahıya yaza bilir, amma Claude bunu
-> ancaq növbəti açılışda görəcək.
-
-Menyu ilə işləmək istəmirsinizsə, hər əməliyyatın öz komandası var:
-
-```bash
-npx claude-cairn sync            # bir dəfə saxla və paylaşdır
-npx claude-cairn autostart on    # hər 10 dəqiqədən bir təkrarla
-npx claude-cairn status          # nə var, nə risk altındadır
-```
 
 ---
 

@@ -11,16 +11,40 @@
 You signed into a different Claude account and your conversations vanished.
 They are not gone. Cairn brings them back, and stops it happening again.
 
+---
+
+## Install
+
+### Windows
+
+**1.** [**⬇ Download Cairn.cmd**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd) — your browser may ask whether to keep the file. Keep it.
+
+**2.** **Double-click** the file you just downloaded.
+
+**3.** The screen above opens. Press **`1`**, wait a few seconds.
+
+**4.** **Quit Claude completely** and open it again.
+
+Done. Your conversations are back in the sidebar.
+
+> **Why quit and reopen Claude?** It reads its list of conversations once, at
+> startup. Cairn can add to that list, but Claude will not notice until the
+> next launch.
+
+Then run it once more and press **`3`** to turn on automatic sync, so you never
+have to do this again.
+
+> Cairn needs [Node.js](https://nodejs.org) — most developers already have it.
+> If you do not, the window tells you so and points you there. Install the
+> version marked **LTS**, then double-click Cairn.cmd again.
+
+### Mac, Linux, or if you prefer a terminal
+
 ```bash
 npx claude-cairn
 ```
 
-That opens the screen above. Nothing is changed until you choose something.
-
-**Not comfortable with a terminal?** Download
-[Cairn.cmd](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd)
-and double-click it. It does the same thing, and tells you what to install if
-anything is missing.
+Same screen, same steps.
 
 ---
 
@@ -49,34 +73,6 @@ there. Go back, and the work you did in between is there too.
 
 **It watches.** Turn on automatic sync and the two above happen every ten
 minutes, starting with your computer. You never think about it again.
-
----
-
-## Getting started
-
-Run it:
-
-```bash
-npx claude-cairn
-```
-
-Press **1** to sync, then **restart Claude**. Your conversations are back in
-the sidebar.
-
-Then press **3** to turn on automatic sync, so this was the last time you had
-to do anything.
-
-> **Why restart Claude?** It reads its list of conversations once, when it
-> starts. Cairn can write to that list, but Claude will not notice until the
-> next launch.
-
-If you would rather not use a menu, every action has a command:
-
-```bash
-npx claude-cairn sync            # save and share, once
-npx claude-cairn autostart on    # keep doing it, every 10 minutes
-npx claude-cairn status          # what is here, what is at risk
-```
 
 ---
 

@@ -12,16 +12,41 @@ Başka bir Claude hesabına giriş yaptınız ve sohbetleriniz kayboldu. Aslınd
 hiçbir yere gitmediler. Cairn onları geri getirir ve bunun bir daha
 yaşanmasını engeller.
 
+---
+
+## Kurulum
+
+### Windows
+
+**1.** [**⬇ Cairn.cmd dosyasını indirin**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd) — tarayıcınız dosyayı saklamak isteyip istemediğinizi sorabilir. Saklayın.
+
+**2.** İndirdiğiniz dosyaya **çift tıklayın**.
+
+**3.** Yukarıdaki ekran açılır. **`1`**'e basın ve birkaç saniye bekleyin.
+
+**4.** **Claude'dan tamamen çıkın** ve yeniden açın.
+
+Hepsi bu. Sohbetleriniz kenar çubuğuna geri geldi.
+
+> **Claude'dan neden çıkıp yeniden açmak gerekiyor?** Claude sohbet listesini
+> yalnızca bir kez, açılışta okur. Cairn o listeye yazabilir ama Claude bunu
+> ancak bir sonraki açılışta fark eder.
+
+Sonra bir kez daha çalıştırın ve otomatik eşitlemeyi açmak için **`3`**'e
+basın; böylece bunu bir daha yapmanız gerekmez.
+
+> Cairn'in çalışması için [Node.js](https://nodejs.org) gerekir — çoğu
+> geliştiricide zaten vardır. Sizde yoksa pencere bunu söyler ve sizi oraya
+> yönlendirir. **LTS** yazan sürümü kurun, sonra Cairn.cmd dosyasına yeniden
+> çift tıklayın.
+
+### Mac, Linux ya da terminali tercih ediyorsanız
+
 ```bash
 npx claude-cairn
 ```
 
-Bu komut yukarıdaki ekranı açar. Siz bir şey seçmeden hiçbir şey değişmez.
-
-**Terminal kullanmakta rahat değil misiniz?**
-[Cairn.cmd](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd)
-dosyasını indirip çift tıklayın. Aynı işi yapar ve eksik bir şey varsa neyi
-kurmanız gerektiğini söyler.
+Aynı ekran, aynı adımlar.
 
 ---
 
@@ -51,34 +76,6 @@ sohbetiniz orada. Geri döndüğünüzde arada yaptığınız iş de orada.
 **Göz kulak olur.** Otomatik eşitlemeyi açın; yukarıdaki iki iş, bilgisayarınız
 açılır açılmaz başlayarak her on dakikada bir kendiliğinden yapılır. Bir daha
 aklınıza bile getirmezsiniz.
-
----
-
-## Başlarken
-
-Çalıştırın:
-
-```bash
-npx claude-cairn
-```
-
-Eşitlemek için **1**'e basın, sonra **Claude'u yeniden başlatın**.
-Sohbetleriniz kenar çubuğuna geri gelmiş olacak.
-
-Ardından otomatik eşitlemeyi açmak için **3**'e basın; böylece bu, elle bir
-şey yapmanız gereken son sefer olur.
-
-> **Claude'u neden yeniden başlatmak gerekiyor?** Claude sohbet listesini
-> yalnızca bir kez, açılışta okur. Cairn o listeye yazabilir ama Claude bunu
-> ancak bir sonraki açılışta fark eder.
-
-Menüyle uğraşmak istemiyorsanız, her işlemin bir komutu var:
-
-```bash
-npx claude-cairn sync            # bir kez sakla ve paylaştır
-npx claude-cairn autostart on    # her 10 dakikada bir tekrarla
-npx claude-cairn status          # neler var, neler risk altında
-```
 
 ---
 

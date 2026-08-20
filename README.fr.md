@@ -12,17 +12,41 @@ Vous vous êtes connecté à un autre compte Claude et vos conversations ont
 disparu. Elles ne sont pas perdues. Cairn les fait revenir, et empêche que ça
 recommence.
 
+---
+
+## Installation
+
+### Windows
+
+**1.** [**⬇ Téléchargez Cairn.cmd**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd) — votre navigateur vous demandera peut-être si vous voulez conserver le fichier. Conservez-le.
+
+**2.** **Double-cliquez** sur le fichier que vous venez de télécharger.
+
+**3.** L'écran ci-dessus s'ouvre. Appuyez sur **`1`**, patientez quelques secondes.
+
+**4.** **Quittez complètement Claude**, puis rouvrez-le.
+
+C'est fait. Vos conversations sont de retour dans la barre latérale.
+
+> **Pourquoi quitter et rouvrir Claude ?** Il lit sa liste de conversations une
+> seule fois, au lancement. Cairn peut écrire dans cette liste, mais Claude ne
+> le verra qu'au prochain démarrage.
+
+Relancez-le ensuite une dernière fois et appuyez sur **`3`** pour activer la
+synchronisation automatique : vous n'aurez plus jamais à recommencer.
+
+> Cairn a besoin de [Node.js](https://nodejs.org) — la plupart des développeurs
+> l'ont déjà. Sinon, la fenêtre vous le dit et vous indique où le trouver.
+> Installez la version marquée **LTS**, puis double-cliquez à nouveau sur
+> Cairn.cmd.
+
+### Mac, Linux, ou si vous préférez un terminal
+
 ```bash
 npx claude-cairn
 ```
 
-Cette commande ouvre l'écran ci-dessus. Rien n'est modifié tant que vous n'avez
-rien choisi.
-
-**Pas à l'aise avec un terminal ?** Téléchargez
-[Cairn.cmd](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd)
-et double-cliquez dessus. Ça fait exactement la même chose, et ça vous dit
-quoi installer s'il manque quelque chose.
+Même écran, mêmes étapes.
 
 ---
 
@@ -53,34 +77,6 @@ est là aussi.
 **Il veille.** Activez la synchronisation automatique et les deux points
 ci-dessus se répètent toutes les dix minutes, dès le démarrage de votre
 ordinateur. Vous n'y pensez plus jamais.
-
----
-
-## Pour commencer
-
-Lancez-le :
-
-```bash
-npx claude-cairn
-```
-
-Appuyez sur **1** pour synchroniser, puis **redémarrez Claude**. Vos
-conversations sont de retour dans la barre latérale.
-
-Appuyez ensuite sur **3** pour activer la synchronisation automatique : ce sera
-la dernière fois que vous aurez quelque chose à faire.
-
-> **Pourquoi redémarrer Claude ?** Il lit sa liste de conversations une seule
-> fois, au lancement. Cairn peut écrire dans cette liste, mais Claude ne le
-> verra qu'au prochain démarrage.
-
-Si vous préférez vous passer du menu, chaque action a sa commande :
-
-```bash
-npx claude-cairn sync            # sauvegarder et partager, une fois
-npx claude-cairn autostart on    # continuer, toutes les 10 minutes
-npx claude-cairn status          # ce qui est là, ce qui est menacé
-```
 
 ---
 
