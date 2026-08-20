@@ -43,7 +43,7 @@ synchronisation automatique : vous n'aurez plus jamais à recommencer.
 ### Mac, Linux, ou si vous préférez un terminal
 
 ```bash
-npx claude-cairn
+npx github:veax-project/claude-cairn
 ```
 
 Même écran, mêmes étapes.
@@ -83,7 +83,7 @@ ordinateur. Vous n'y pensez plus jamais.
 ## Laissez Claude chercher dans votre propre historique
 
 ```bash
-npx claude-cairn install-mcp
+npx github:veax-project/claude-cairn install-mcp
 ```
 
 Redémarrez Claude, puis demandez-lui des choses comme :
@@ -114,7 +114,7 @@ vous-même.
 **Et si ça casse quelque chose ?**
 
 ```bash
-npx claude-cairn undo
+npx github:veax-project/claude-cairn undo
 ```
 
 Cette commande retire exactement ce que la dernière synchronisation a ajouté, et

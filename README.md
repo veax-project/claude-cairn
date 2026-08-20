@@ -41,7 +41,7 @@ have to do this again.
 ### Mac, Linux, or if you prefer a terminal
 
 ```bash
-npx claude-cairn
+npx github:veax-project/claude-cairn
 ```
 
 Same screen, same steps.
@@ -79,7 +79,7 @@ minutes, starting with your computer. You never think about it again.
 ## Let Claude search your own history
 
 ```bash
-npx claude-cairn install-mcp
+npx github:veax-project/claude-cairn install-mcp
 ```
 
 Restart Claude, then ask it things like:
@@ -108,7 +108,7 @@ That is the easiest way to check for yourself.
 **What if it breaks something?**
 
 ```bash
-npx claude-cairn undo
+npx github:veax-project/claude-cairn undo
 ```
 
 That removes exactly what the last sync added, and nothing else. It recognises

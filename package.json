@@ -13,7 +13,8 @@
   "scripts": {
     "start": "node src/cli.js",
     "test": "node test/smoke.js && node test/screen.js",
-    "screenshots": "node scripts/screenshot.mjs docs/home.svg \"\" 92 30 && node scripts/screenshot.mjs docs/accounts.svg \"4,wait\" 92 30"
+    "screenshots": "node scripts/screenshot.mjs docs/home.svg \"\" 92 30 && node scripts/screenshot.mjs docs/accounts.svg \"4,wait\" 92 30",
+    "zip": "node scripts/pack-release.mjs"
   },
   "keywords": [
     "claude",

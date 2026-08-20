@@ -43,7 +43,7 @@ basın; böylece bunu bir daha yapmanız gerekmez.
 ### Mac, Linux ya da terminali tercih ediyorsanız
 
 ```bash
-npx claude-cairn
+npx github:veax-project/claude-cairn
 ```
 
 Aynı ekran, aynı adımlar.
@@ -82,7 +82,7 @@ aklınıza bile getirmezsiniz.
 ## Claude kendi geçmişinizde arama yapsın
 
 ```bash
-npx claude-cairn install-mcp
+npx github:veax-project/claude-cairn install-mcp
 ```
 
 Claude'u yeniden başlatın, sonra ona şöyle şeyler sorun:
@@ -111,7 +111,7 @@ komutlar yine çalışır. Kendiniz doğrulamanın en kolay yolu da bu.
 **Ya bir şeyi bozarsa?**
 
 ```bash
-npx claude-cairn undo
+npx github:veax-project/claude-cairn undo
 ```
 
 Bu komut, son eşitlemenin eklediği ne varsa onu kaldırır; başka hiçbir şeye

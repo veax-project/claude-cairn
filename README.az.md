@@ -43,7 +43,7 @@ düyməsini basın: beləcə bunu bir daha etməli olmayacaqsınız.
 ### Mac, Linux, yaxud terminala üstünlük verirsinizsə
 
 ```bash
-npx claude-cairn
+npx github:veax-project/claude-cairn
 ```
 
 Eyni ekran, eyni addımlar.
@@ -82,7 +82,7 @@ düşünməyəcəksiniz.
 ## Qoy Claude öz tarixçənizdə axtarış aparsın
 
 ```bash
-npx claude-cairn install-mcp
+npx github:veax-project/claude-cairn install-mcp
 ```
 
 Claude-u yenidən başladın, sonra ondan belə şeylər soruşun:
@@ -111,7 +111,7 @@ bütün komandalar yenə işləyəcək. Özünüz yoxlamağın ən asan yolu da 
 **Bəs nəyisə xarab etsə?**
 
 ```bash
-npx claude-cairn undo
+npx github:veax-project/claude-cairn undo
 ```
 
 Bu komanda son sinxronizasiyanın əlavə etdiyini geri götürür, başqa heç nəyə
