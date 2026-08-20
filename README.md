@@ -4,62 +4,73 @@
 
 **Your Claude Code conversations, on every account.**
 
-> **Beta.** Verified end-to-end on Windows — 23 conversations that had been
-> invisible for weeks came back after a restart. macOS and Linux paths are
-> written but have never been run. Nothing is deleted, and `undo` reverses
-> every change.
-
-```bash
-npx claude-cairn
-```
-
 <p align="center">
   <img src="docs/home.svg" alt="Cairn" width="810">
 </p>
 
-Pick option 2 and you get a numbered list — type the numbers you want, hit
-enter, restart Claude. They are back.
-
----
-
-## The two things that eat your history
-
-### 1. Claude Code deletes transcripts after 30 days
-
-Every conversation is stored on your disk, then garbage-collected once it is
-older than `cleanupPeriodDays` — **30 days by default**, and that key is absent
-from a fresh `settings.json`, so almost nobody knows the timer is running.
-
-### 2. Switching accounts hides everything from the old one
-
-The conversation and the sidebar entry that lists it are two different files:
-
-| | Where it lives | Tied to your account? |
-|---|---|---|
-| **The conversation** | `~/.claude/projects/<project>/<id>.jsonl` | No |
-| **The sidebar entry** | `<appData>/Claude/claude-code-sessions/<account>/<org>/local_*.json` | **Yes** |
-
-Sign in with another account and the app reads a different folder. Your
-conversations are still on disk — they are simply not listed any more.
-
-Cairn backs the conversations up out of reach of the cleanup, and writes
-the missing sidebar entries under the account you are on now.
-
----
-
-## Install
-
-Nothing to install. Needs Node 22.16+ (for the SQLite full-text search that
-ships inside Node):
+You signed into a different Claude account and your conversations vanished.
+They are not gone. Cairn brings them back, and stops it happening again.
 
 ```bash
 npx claude-cairn
 ```
 
-Or keep it around:
+That opens the screen above. Nothing is changed until you choose something.
+
+---
+
+## What is going wrong
+
+**Switching accounts hides your history.** Your conversations are still on your
+disk, untouched. Claude simply keeps a separate list for each account, and
+after you sign in somewhere else it is reading the wrong list.
+
+**And Claude Code deletes conversations after 30 days.** By default, quietly,
+whether or not you switch accounts. Most people find out when something they
+wanted is already gone.
+
+---
+
+## What Cairn does about it
+
+Three things, then it leaves you alone.
+
+**It saves them.** Every conversation is copied somewhere Claude does not
+delete from. That copy is yours, and nothing removes it.
+
+**It shares them.** Every account on your computer gets every conversation —
+in both directions. Start something on one account, switch to another, it is
+there. Go back, and the work you did in between is there too.
+
+**It watches.** Turn on automatic sync and the two above happen every ten
+minutes, starting with your computer. You never think about it again.
+
+---
+
+## Getting started
+
+Run it:
 
 ```bash
-npm install -g claude-cairn
+npx claude-cairn
+```
+
+Press **1** to sync, then **restart Claude**. Your conversations are back in
+the sidebar.
+
+Then press **3** to turn on automatic sync, so this was the last time you had
+to do anything.
+
+> **Why restart Claude?** It reads its list of conversations once, when it
+> starts. Cairn can write to that list, but Claude will not notice until the
+> next launch.
+
+If you would rather not use a menu, every action has a command:
+
+```bash
+npx claude-cairn sync            # save and share, once
+npx claude-cairn autostart on    # keep doing it, every 10 minutes
+npx claude-cairn status          # what is here, what is at risk
 ```
 
 ---
@@ -70,156 +81,140 @@ npm install -g claude-cairn
 npx claude-cairn install-mcp
 ```
 
-This registers Cairn as an MCP server. **MCP servers are configured per
-machine, not per account** — which is the whole trick. Sign into a brand new
-account and Claude can still reach everything you have ever done:
+Restart Claude, then ask it things like:
 
-> *"search my old conversations for how we fixed the auth bug"*
+> *search my old conversations for how we fixed the auth bug*
 
-Restart Claude after running it.
+This works on **any** account, including one you created five minutes ago. That
+is the point: this connection belongs to your computer, not to an account, so a
+brand-new account can reach everything you have ever done.
+
+<p align="center">
+  <img src="docs/accounts.svg" alt="The accounts screen" width="810">
+</p>
+
+---
+
+## Questions people ask
+
+**Where does my data go?**
+
+Nowhere. Cairn copies files from one folder on your computer to another folder
+on your computer. There are no dependencies, no telemetry, no update check, and
+no network calls at all — turn off your wifi and every command still works.
+That is the easiest way to check for yourself.
+
+**What if it breaks something?**
+
+```bash
+npx claude-cairn undo
+```
+
+That removes exactly what the last sync added, and nothing else. It recognises
+its own files by size and timestamp, so anything Claude has touched since is
+left alone. Nothing is ever deleted from your backup.
+
+**Why are some of my accounts shown as a code instead of a name?**
+
+Because nothing on your computer says who they belonged to. Claude only
+identifies the account you are signed into right now, so Cairn writes that name
+down each time it runs. Every account you use from now on names itself the
+first time you sign in. For older ones, press **4** and name them by hand — the
+list shows what each account started with and when you last used it, which is
+usually enough to jog your memory.
+
+**Does it work on Mac or Linux?**
+
+Honestly: unknown. Cairn was built and verified on Windows. The Mac and Linux
+code is written and reviewed but has never been run on a real machine. If you
+try it, [tell us what happened](https://github.com/veax-project/claude-cairn/issues/new?template=platform_report.md)
+— that is the only way it gets fixed.
+
+**Does this work for my normal Claude chats too?**
+
+No. Only Claude Code. Regular chats live on Anthropic's servers and cannot be
+moved between accounts — that is a limit of the product, not of this tool. Use
+*Settings → Privacy → Export Data* before you abandon an account.
+
+**Can it put old conversations into a new account's chat history?**
+
+For Claude Code, yes — that is exactly what it does. For regular chats, no, and
+neither can anything else: there is no way to write a past reply into a Claude
+account. Any tool that claims otherwise is re-sending your side of the
+conversation and letting Claude answer fresh.
 
 ---
 
 ## Commands
 
-Running `cairn` with no arguments opens the interface above. The named
-commands are there for scripting and for background backups.
-
 | Command | What it does |
 |---|---|
-| `cairn` | The interactive interface |
-| `autostart on` | Sync in the background, forever · `--every 10` |
-| `sync` | Back up and spread to every account, once |
-| `watch` | Keep syncing until you stop it · `--every 10` |
-| `status` | What is here, what is hidden, what is at risk |
-| `backup` | Back up only, no syncing |
-| `restore` | Sync to the current account only · `--dry` to preview |
-| `undo` | Undo everything the syncing wrote |
-| `search <words>` | Search across every account |
-| `install-mcp` | Let Claude search the archive itself |
-| `export` | Write everything as Markdown · `--out DIR` |
-| `pack [ids…]` | Bundle conversations into one file for a new chat |
-| `reindex` | Rebuild the search index |
+| `cairn` | Opens the screen at the top of this page |
+| `cairn sync` | Save everything, then give every account everything |
+| `cairn autostart on` | Keep doing that, every 10 minutes, from startup |
+| `cairn status` | What is here, what is hidden, what is at risk |
+| `cairn undo` | Remove exactly what the last sync wrote |
+| `cairn search <words>` | Search across every account |
+| `cairn install-mcp` | Let Claude search the archive itself |
+| `cairn export` | Write every conversation out as Markdown |
+| `cairn pack` | Bundle conversations into one file to attach to a chat |
 
-## Set it and forget it
-
-```bash
-npx claude-cairn autostart on
-```
-
-From then on, every ten minutes and starting with your computer:
-
-- every conversation is copied out of reach of the 30-day cleanup;
-- **every account on this machine is given every conversation** — not just the
-  one you are signed into.
-
-So the round trip works: start something on account 1, switch to account 2, it
-is there. Work on account 2, go back to account 1, that work is there too.
-Restart Claude after switching — the app reads these files once, at launch.
-
-Turn it off with `autostart off`. Nothing is deleted when you do.
-
-### Why accounts show as codes at first
-
-Claude stores its session folders by account UUID, and nothing on your machine
-maps a UUID back to a person — the desktop app's OAuth cache is encrypted and
-the logs never write the address. Only the account you are signed into right
-now identifies itself, in `~/.claude.json`.
-
-So Cairn writes that down every time it runs. Every account you use from now on
-names itself the first time you sign in. Accounts you used *before* installing
-Cairn keep their code until you name them under **Name an account** — the list
-shows how many conversations each one started with, when it was last used, and
-one of its titles, which is usually enough to recognise it.
-
-The vault defaults to `~/ClaudeCairn`. Override with `--vault <dir>` or the
+Your backup lives in `~/ClaudeCairn`. Move it with `--vault <folder>` or the
 `CAIRN_VAULT` environment variable.
 
----
-
-## Where your data goes
-
-Nowhere. Cairn copies files from one folder on your machine to another
-folder on your machine.
-
-- **Zero dependencies.** `package.json` has an empty `dependencies` block.
-- **Zero network calls.** No telemetry, no update check, no analytics. Turn off
-  your wifi and every command still works — the easiest way to verify it.
-- The MCP server talks to Claude Desktop over stdin/stdout and opens no socket.
-- Nothing is ever deleted from the vault, and `undo` removes only the files
-  Cairn itself wrote, identified by size and timestamp — a file Claude has
-  rewritten since is left alone.
-
-It is plain JavaScript, no build step. Read it.
-
----
-
-## What this does *not* do
-
-Being straight about it, because the question comes up immediately:
-
-- ❌ **It cannot put conversations into a claude.ai account.** Anthropic's
-  documentation is explicit that exported data cannot be imported into another
-  personal account, and no API — public, internal, or enterprise — exposes a
-  way to write an assistant message into a conversation. Any tool claiming
-  otherwise is replaying your side and letting Claude answer fresh.
-- ❌ **It does not touch claude.ai chats** (the regular chat product). Those
-  live on Anthropic's servers. Use *Settings → Privacy → Export Data* before
-  abandoning an account.
-- ✅ **It handles Claude Code sessions completely**, because those are already
-  on your disk.
-
-For carrying context onto a new account, `pack` writes a single Markdown file
-you attach to a fresh chat — the one method that is officially supported and
-guaranteed to be read in full.
+**Requirements:** Node 22.16 or newer. Nothing else — Cairn has no
+dependencies.
 
 ---
 
 ## How it works
 
+*You do not need this to use Cairn. It is here because a tool that touches your
+conversations should be able to explain itself.*
+
+Claude Code keeps two separate things, in two separate places:
+
 ```
-~/.claude/projects/<project-slug>/<cliSessionId>.jsonl
-    the conversation — JSONL, one message per line
-    deleted after cleanupPeriodDays (default 30)
+~/.claude/projects/<project>/<id>.jsonl
+    the conversation itself
+    deleted once it is older than cleanupPeriodDays — 30 by default
 
-<appData>/Claude/claude-code-sessions/<accountUuid>/<orgUuid>/local_*.json
-    the sidebar entry — title, project, model, and cliSessionId
-    partitioned per account, which is why switching hides your history
-
-<vault>/sessions/<cliSessionId>/transcript.jsonl
-    Cairn's copy, outside the reach of the cleanup
-
-<vault>/index.db
-    SQLite FTS5 over user and assistant prose
+<appData>/Claude/claude-code-sessions/<account>/<org>/local_*.json
+    the sidebar entry that lists it
+    one folder per account, which is why switching hides everything
 ```
 
-`backup` walks both stores and joins them on `cliSessionId`. Transcripts are
-append-only, so a file whose size has not changed is skipped. Nothing is ever
-removed from the vault: a conversation Claude Code has already purged stays,
-flagged, because that copy is now the only one that exists.
+Cairn copies the first somewhere safe, and writes the second under every
+account it finds. Conversations are only ever appended to, so a file that has
+not grown is skipped, and nothing is ever removed from the backup — a
+conversation Claude has already deleted stays, because that copy is now the
+only one in existence.
 
-`restore` undoes the partitioning — it writes a sidebar entry under your
-current account for anything missing, and puts back any transcript the cleanup
-already took.
+Claude checks each sidebar entry against a strict shape before it will list it,
+and silently drops anything that does not match. Cairn builds them from the
+shape observed in real files: timestamps as numbers rather than text, no extra
+fields, and no placeholder values that occasionally appear in transcripts.
 
-Paths resolve per platform (`%APPDATA%\Claude` on Windows,
-`~/Library/Application Support/Claude` on macOS).
+The search index is SQLite full-text search, using the copy that ships inside
+Node. The MCP server talks to Claude over standard input and output and opens
+no socket.
 
 ---
 
-## Contributing
+## Beta
 
-Issues and PRs welcome. Particularly useful:
+This is a first release. It has been verified end to end on Windows: 23
+conversations that had been invisible for weeks came back into the sidebar
+after a restart, and every entry Cairn wrote was accepted.
 
-- Confirmation of the session-index layout on macOS
-- Claude Desktop releases that move or reshape these files
+There are 21 automated tests, including one that replays the interface onto a
+simulated terminal at seven window sizes to catch layout faults.
 
-```bash
-npm test
-```
+**What is not proven:** macOS and Linux. And conversations Claude deleted
+before your first backup are gone — nothing can bring those back.
+
+Found a problem? [Open an issue](https://github.com/veax-project/claude-cairn/issues/new/choose).
 
 ---
-
-## License
 
 MIT

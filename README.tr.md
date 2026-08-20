@@ -2,65 +2,77 @@
 
 # Cairn
 
-**Claude Code konuşmalarınız, her hesapta.**
-
-> **Beta.** Windows üzerinde uçtan uca doğrulandı — haftalardır görünmeyen 23
-> konuşma, bir yeniden başlatmanın ardından geri geldi. macOS ve Linux yolları
-> yazıldı ama hiç çalıştırılmadı. Hiçbir şey silinmez, `undo` da her
-> değişikliği geri alır.
-
-```bash
-npx claude-cairn
-```
+**Claude Code sohbetleriniz, her hesapta.**
 
 <p align="center">
   <img src="docs/home.svg" alt="Cairn" width="810">
 </p>
 
-İkinci seçeneği seçin, karşınıza numaralı bir liste gelir — istediğiniz
-numaraları yazın, enter'a basın, Claude'u yeniden başlatın. Hepsi geri geldi.
-
----
-
-## Geçmişinizi yiyip bitiren iki şey
-
-### 1. Claude Code, transkriptleri 30 gün sonra siler
-
-Her konuşma diskinizde saklanır; `cleanupPeriodDays` değerinden daha eski
-olduğu anda da çöp toplayıcı tarafından silinir — **varsayılan olarak 30 gün**.
-Üstelik bu anahtar yepyeni bir `settings.json` dosyasında hiç yer almaz;
-dolayısıyla geri sayımın işlediğini neredeyse hiç kimse bilmez.
-
-### 2. Hesap değiştirmek, eski hesaptaki her şeyi gizler
-
-Konuşmanın kendisi ile onu listeleyen kenar çubuğu kaydı iki ayrı dosyadır:
-
-| | Nerede durur | Hesabınıza bağlı mı? |
-|---|---|---|
-| **Konuşma** | `~/.claude/projects/<project>/<id>.jsonl` | Hayır |
-| **Kenar çubuğu kaydı** | `<appData>/Claude/claude-code-sessions/<account>/<org>/local_*.json` | **Evet** |
-
-Başka bir hesapla oturum açtığınızda uygulama farklı bir klasörü okur.
-Konuşmalarınız hâlâ diskinizde durur — yalnızca artık listelenmiyor.
-
-Cairn, konuşmaları temizliğin ulaşamayacağı bir yere yedekler ve eksik kenar
-çubuğu kayıtlarını şu anda kullandığınız hesabın altına yazar.
-
----
-
-## Kurulum
-
-Kurulacak bir şey yok. Node 22.16+ gerekiyor (Node'un içinde gelen SQLite tam
-metin araması için):
+Başka bir Claude hesabına giriş yaptınız ve sohbetleriniz kayboldu. Aslında
+hiçbir yere gitmediler. Cairn onları geri getirir ve bunun bir daha
+yaşanmasını engeller.
 
 ```bash
 npx claude-cairn
 ```
 
-Ya da elinizin altında dursun isterseniz:
+Bu komut yukarıdaki ekranı açar. Siz bir şey seçmeden hiçbir şey değişmez.
+
+---
+
+## Sorun nerede
+
+**Hesap değiştirmek geçmişinizi gizler.** Sohbetleriniz hâlâ diskinizde, hiç
+dokunulmamış hâlde duruyor. Claude her hesap için ayrı bir liste tutuyor;
+başka bir hesapla giriş yaptığınızda yanlış listeyi okuyor, o kadar.
+
+**Üstelik Claude Code sohbetleri 30 gün sonra siliyor.** Hem de varsayılan
+olarak ve sessizce; siz hesap değiştirseniz de değiştirmeseniz de. Çoğu kişi
+bunu, ihtiyaç duyduğu şey çoktan gitmişken fark ediyor.
+
+---
+
+## Cairn bu konuda ne yapıyor
+
+Üç şey yapar, sonra sizi rahat bırakır.
+
+**Sohbetleri saklar.** Her sohbet, Claude'un silmediği bir yere kopyalanır. O
+kopya sizindir; kimse onu kaldırmaz.
+
+**Hepsini paylaştırır.** Bilgisayarınızdaki her hesapta bütün sohbetler
+görünür — hem de iki yönlü. Bir hesapta bir işe başlayıp diğerine geçin:
+sohbetiniz orada. Geri döndüğünüzde arada yaptığınız iş de orada.
+
+**Göz kulak olur.** Otomatik eşitlemeyi açın; yukarıdaki iki iş, bilgisayarınız
+açılır açılmaz başlayarak her on dakikada bir kendiliğinden yapılır. Bir daha
+aklınıza bile getirmezsiniz.
+
+---
+
+## Başlarken
+
+Çalıştırın:
 
 ```bash
-npm install -g claude-cairn
+npx claude-cairn
+```
+
+Eşitlemek için **1**'e basın, sonra **Claude'u yeniden başlatın**.
+Sohbetleriniz kenar çubuğuna geri gelmiş olacak.
+
+Ardından otomatik eşitlemeyi açmak için **3**'e basın; böylece bu, elle bir
+şey yapmanız gereken son sefer olur.
+
+> **Claude'u neden yeniden başlatmak gerekiyor?** Claude sohbet listesini
+> yalnızca bir kez, açılışta okur. Cairn o listeye yazabilir ama Claude bunu
+> ancak bir sonraki açılışta fark eder.
+
+Menüyle uğraşmak istemiyorsanız, her işlemin bir komutu var:
+
+```bash
+npx claude-cairn sync            # bir kez sakla ve paylaştır
+npx claude-cairn autostart on    # her 10 dakikada bir tekrarla
+npx claude-cairn status          # neler var, neler risk altında
 ```
 
 ---
@@ -71,163 +83,143 @@ npm install -g claude-cairn
 npx claude-cairn install-mcp
 ```
 
-Bu komut, Cairn'i bir MCP sunucusu olarak kaydeder. **MCP sunucuları hesap
-başına değil, makine başına yapılandırılır** — işin bütün püf noktası da bu.
-Yepyeni bir hesapla oturum açsanız bile Claude, bugüne kadar yaptığınız her
-şeye ulaşabilir:
+Claude'u yeniden başlatın, sonra ona şöyle şeyler sorun:
 
-> *"eski konuşmalarımda auth hatasını nasıl düzelttiğimizi ara"*
+> *auth hatasını nasıl çözdüğümüzü eski sohbetlerimde ara*
 
-Çalıştırdıktan sonra Claude'u yeniden başlatın.
+Bu, **her** hesapta çalışır; beş dakika önce açtığınız hesapta bile. Zaten
+olayın özü bu: bu bağlantı bir hesaba değil, bilgisayarınıza ait. Yani
+yepyeni bir hesap bile bugüne kadar yaptığınız her şeye ulaşabilir.
+
+<p align="center">
+  <img src="docs/accounts.svg" alt="Hesaplar ekranı" width="810">
+</p>
+
+---
+
+## İnsanların sorduğu sorular
+
+**Verilerim nereye gidiyor?**
+
+Hiçbir yere. Cairn, bilgisayarınızdaki bir klasörden yine bilgisayarınızdaki
+başka bir klasöre dosya kopyalar. Bağımlılık yok, telemetri yok, güncelleme
+kontrolü yok, ağa çıkan tek bir istek bile yok — Wi-Fi'ınızı kapatın, bütün
+komutlar yine çalışır. Kendiniz doğrulamanın en kolay yolu da bu.
+
+**Ya bir şeyi bozarsa?**
+
+```bash
+npx claude-cairn undo
+```
+
+Bu komut, son eşitlemenin eklediği ne varsa onu kaldırır; başka hiçbir şeye
+dokunmaz. Kendi dosyalarını boyutlarından ve zaman damgalarından tanır, yani
+Claude'un o zamandan beri elinin değdiği hiçbir şeye karışmaz. Yedeğinizden
+ise asla bir şey silinmez.
+
+**Bazı hesaplarım neden isim yerine bir kodla görünüyor?**
+
+Çünkü bilgisayarınızda o hesapların kime ait olduğunu söyleyen hiçbir şey yok.
+Claude yalnızca şu anda giriş yapmış olduğunuz hesabın adını söylüyor; Cairn de
+her çalıştığında o ismi bir kenara yazıyor. Bundan sonra kullanacağınız her
+hesap, ilk girişinizde kendi adını vermiş olacak. Eskiler içinse **4**'e basıp
+isimleri elle yazabilirsiniz — listede her hesabın ilk sohbeti ve o hesabı en
+son ne zaman kullandığınız yazıyor; genelde hatırlamanıza yetiyor.
+
+**Mac veya Linux'ta çalışıyor mu?**
+
+Dürüstçe söyleyeyim: bilmiyoruz. Cairn Windows'ta geliştirildi ve orada
+doğrulandı. Mac ve Linux tarafının kodu yazıldı, gözden de geçirildi ama
+gerçek bir makinede hiç çalıştırılmadı. Denerseniz,
+[başınıza geleni bize anlatın](https://github.com/veax-project/claude-cairn/issues/new?template=platform_report.md)
+— düzelmesinin tek yolu bu.
+
+**Bu, normal Claude sohbetlerim için de işe yarıyor mu?**
+
+Hayır. Yalnızca Claude Code. Normal sohbetler Anthropic'in sunucularında
+duruyor ve hesaplar arasında taşınamıyor — bu, aracın değil ürünün sınırı. Bir
+hesabı bırakmadan önce *Settings → Privacy → Export Data* yolunu kullanın.
+
+**Eski sohbetleri yeni bir hesabın sohbet geçmişine koyabilir mi?**
+
+Claude Code için evet — zaten tam olarak yaptığı şey bu. Normal sohbetler
+içinse hayır; başka hiçbir şey de yapamaz: bir Claude hesabına geçmişte
+verilmiş bir cevabı yazmanın yolu yok. Aksini iddia eden araçlar, sohbetin
+sizin tarafınızı yeniden gönderip Claude'a baştan cevap verdiriyordur.
 
 ---
 
 ## Komutlar
 
-`cairn` komutunu argümansız çalıştırmak yukarıdaki arayüzü açar. Adlandırılmış
-komutlar ise betik yazmak ve arka planda yedekleme almak için var.
-
 | Komut | Ne yapar |
 |---|---|
-| `cairn` | Etkileşimli arayüz |
-| `autostart on` | Arka planda, sürekli senkronize eder · `--every 10` |
-| `sync` | Bir kez yedekler ve her hesaba dağıtır |
-| `watch` | Siz durdurana kadar senkronize etmeyi sürdürür · `--every 10` |
-| `status` | Neler burada, neler gizli, neler risk altında |
-| `backup` | Yalnızca yedekler, senkronizasyon yok |
-| `restore` | Yalnızca geçerli hesaba senkronize eder · önizleme için `--dry` |
-| `undo` | Senkronizasyonun yazdığı her şeyi geri alır |
-| `search <words>` | Bütün hesaplarda arama yapar |
-| `install-mcp` | Claude'un arşivde kendi başına arama yapmasını sağlar |
-| `export` | Her şeyi Markdown olarak yazar · `--out DIR` |
-| `pack [ids…]` | Yeni bir sohbet için konuşmaları tek dosyada toplar |
-| `reindex` | Arama dizinini yeniden oluşturur |
+| `cairn` | Bu sayfanın başındaki ekranı açar |
+| `cairn sync` | Her şeyi saklar, sonra her hesaba her şeyi verir |
+| `cairn autostart on` | Bunu açılıştan itibaren her 10 dakikada bir sürdürür |
+| `cairn status` | Neler var, neler gizli, neler risk altında |
+| `cairn undo` | Son eşitlemenin yazdığı şeyi geri alır |
+| `cairn search <words>` | Bütün hesaplarda arama yapar |
+| `cairn install-mcp` | Claude'un arşivde kendi başına arama yapmasını sağlar |
+| `cairn export` | Bütün sohbetleri Markdown olarak dışa yazar |
+| `cairn pack` | Sohbetleri, bir sohbete ekleyebileceğiniz tek dosyada toplar |
 
-## Kur ve unut
+Yedeğiniz `~/ClaudeCairn` içinde durur. Başka bir yere taşımak için
+`--vault <folder>` seçeneğini ya da `CAIRN_VAULT` ortam değişkenini kullanın.
 
-```bash
-npx claude-cairn autostart on
-```
-
-O andan itibaren, bilgisayarınızla birlikte açılıp her on dakikada bir:
-
-- her konuşma, 30 günlük temizliğin ulaşamayacağı bir yere kopyalanır;
-- **bu makinedeki her hesaba her konuşma verilir** — yalnızca oturum açtığınız
-  hesaba değil.
-
-Böylece gidiş dönüş tam olarak işler: birinci hesapta bir işe başlayın, ikinci
-hesaba geçin — iş orada. İkinci hesapta çalışın, birinci hesaba dönün — o iş de
-orada. Hesap değiştirdikten sonra Claude'u yeniden başlatın; uygulama bu
-dosyaları yalnızca bir kez, açılışta okur.
-
-`autostart off` ile kapatabilirsiniz. Kapattığınızda hiçbir şey silinmez.
-
-### Hesaplar neden başta kod olarak görünür
-
-Claude, oturum klasörlerini hesap UUID'sine göre saklar ve makinenizde bir
-UUID'yi tekrar bir kişiyle eşleştiren hiçbir şey yoktur — masaüstü uygulamasının
-OAuth önbelleği şifrelidir, loglar da adresi asla yazmaz. Yalnızca şu anda
-oturum açtığınız hesap kendini tanıtır, `~/.claude.json` içinde.
-
-Bu yüzden Cairn, her çalıştığında bunu not eder. Bundan sonra kullanacağınız her
-hesap, ilk oturum açışınızda kendi adını bildirir. Cairn'i kurmadan *önce*
-kullandığınız hesaplar ise siz **Name an account** altında adlandırana kadar
-kodlarıyla kalır — liste, her hesabın kaç konuşmayla yola çıktığını, en son ne
-zaman kullanıldığını ve başlıklarından birini gösterir; bu da onu tanımaya
-genellikle yeter.
-
-Kasa varsayılan olarak `~/ClaudeCairn` dizinidir. `--vault <dir>` ile ya da
-`CAIRN_VAULT` ortam değişkeniyle değiştirebilirsiniz.
+**Gereksinimler:** Node 22.16 veya üzeri. Başka hiçbir şey — Cairn'in hiç
+bağımlılığı yok.
 
 ---
 
-## Verileriniz nereye gidiyor
+## Nasıl çalışıyor
 
-Hiçbir yere. Cairn, makinenizdeki bir klasörden yine makinenizdeki başka bir
-klasöre dosya kopyalar.
+*Cairn'i kullanmak için bunları bilmenize gerek yok. Burada olmalarının sebebi
+şu: sohbetlerinize dokunan bir araç, kendini açıklayabilmeli.*
 
-- **Sıfır bağımlılık.** `package.json` dosyasındaki `dependencies` bloğu boştur.
-- **Sıfır ağ isteği.** Telemetri yok, güncelleme kontrolü yok, analitik yok.
-  Wi-Fi'nizi kapatın, bütün komutlar yine de çalışır — bunu doğrulamanın en
-  kolay yolu.
-- MCP sunucusu, Claude Desktop ile stdin/stdout üzerinden konuşur ve hiçbir
-  soket açmaz.
-- Kasadan hiçbir zaman bir şey silinmez; `undo` yalnızca Cairn'in kendi yazdığı
-  dosyaları, boyutlarından ve zaman damgalarından tanıyarak kaldırır — o
-  zamandan beri Claude'un yeniden yazdığı bir dosyaya dokunulmaz.
-
-Düz JavaScript, derleme adımı yok. Buyurun okuyun.
-
----
-
-## Bu aracın yapmadıkları
-
-Açık konuşalım, çünkü bu soru hemen geliyor:
-
-- ❌ **Konuşmaları bir claude.ai hesabının içine koyamaz.** Anthropic'in
-  dokümantasyonu, dışa aktarılan verilerin başka bir kişisel hesaba
-  aktarılamayacağını açıkça söylüyor; ayrıca hiçbir API — herkese açık, dahili
-  ya da kurumsal — bir konuşmanın içine asistan mesajı yazmanın yolunu sunmuyor.
-  Aksini iddia eden her araç, aslında sizin tarafınızı yeniden oynatıp Claude'a
-  sıfırdan cevap verdiriyordur.
-- ❌ **claude.ai sohbetlerine dokunmaz** (normal sohbet ürünü). Onlar
-  Anthropic'in sunucularında durur. Bir hesabı bırakmadan önce *Settings →
-  Privacy → Export Data* yolunu kullanın.
-- ✅ **Claude Code oturumlarını eksiksiz halleder**, çünkü onlar zaten
-  diskinizde.
-
-Bağlamı yeni bir hesaba taşımak için `pack`, yeni bir sohbete ekleyeceğiniz tek
-bir Markdown dosyası yazar — resmî olarak desteklenen ve tamamının okunacağı
-garanti edilen tek yöntem bu.
-
----
-
-## Nasıl çalışır
+Claude Code iki ayrı şeyi, iki ayrı yerde tutuyor:
 
 ```
-~/.claude/projects/<project-slug>/<cliSessionId>.jsonl
-    the conversation — JSONL, one message per line
-    deleted after cleanupPeriodDays (default 30)
+~/.claude/projects/<project>/<id>.jsonl
+    sohbetin kendisi
+    cleanupPeriodDays değerinden eski olunca silinir — varsayılanı 30 gün
 
-<appData>/Claude/claude-code-sessions/<accountUuid>/<orgUuid>/local_*.json
-    the sidebar entry — title, project, model, and cliSessionId
-    partitioned per account, which is why switching hides your history
-
-<vault>/sessions/<cliSessionId>/transcript.jsonl
-    Cairn's copy, outside the reach of the cleanup
-
-<vault>/index.db
-    SQLite FTS5 over user and assistant prose
+<appData>/Claude/claude-code-sessions/<account>/<org>/local_*.json
+    onu listeleyen kenar çubuğu kaydı
+    her hesap için ayrı klasör; hesap değiştirince her şey bu yüzden kayboluyor
 ```
 
-`backup`, her iki depoyu da tarar ve ikisini `cliSessionId` üzerinden
-birleştirir. Transkriptler yalnızca sona eklenerek büyüdüğü için, boyutu
-değişmemiş bir dosya atlanır. Kasadan hiçbir zaman bir şey çıkarılmaz: Claude
-Code'un çoktan temizlediği bir konuşma, işaretlenmiş hâlde kasada kalır; çünkü
-artık var olan tek kopya odur.
+Cairn birincisini güvenli bir yere kopyalar, ikincisini de bulduğu her hesabın
+altına yazar. Sohbetlere yalnızca ekleme yapılır, o yüzden büyümemiş bir dosya
+atlanır; yedekten de asla bir şey çıkarılmaz — Claude'un çoktan sildiği bir
+sohbet orada kalır, çünkü artık var olan tek kopya odur.
 
-`restore` ise bu bölümlenmeyi geri alır — eksik olan her şey için geçerli
-hesabınızın altına bir kenar çubuğu kaydı yazar ve temizliğin alıp götürdüğü
-transkriptleri geri koyar.
+Claude her kenar çubuğu kaydını listelemeden önce katı bir kalıba göre
+denetliyor ve uymayan her şeyi sessizce eliyor. Cairn bu kayıtları gerçek
+dosyalarda gözlemlenen kalıba göre üretir: zaman damgaları metin değil sayı
+olarak, fazladan tek bir alan olmadan ve kayıtlarda ara sıra beliren yer
+tutucu değerler kullanılmadan.
 
-Yollar platforma göre çözülür (Windows'ta `%APPDATA%\Claude`, macOS'ta
-`~/Library/Application Support/Claude`).
+Arama dizini, Node'un içinde hazır gelen SQLite'ın tam metin aramasını
+kullanıyor. MCP sunucusu Claude ile standart girdi ve çıktı üzerinden
+konuşuyor, hiçbir soket açmıyor.
 
 ---
 
-## Katkıda bulunma
+## Beta
 
-Issue'lar ve PR'lar memnuniyetle karşılanır. Özellikle şunlar işe yarar:
+Bu ilk sürüm. Windows'ta baştan sona doğrulandı: haftalardır görünmeyen 23
+sohbet, yeniden başlatmanın ardından kenar çubuğuna geri geldi ve Cairn'in
+yazdığı kayıtların hepsi kabul edildi.
 
-- macOS'taki oturum indeksi yapısının doğrulanması
-- Bu dosyaların yerini ya da yapısını değiştiren Claude Desktop sürümleri
+21 otomatik test var; bunlardan biri, yerleşim hatalarını yakalamak için
+arayüzü yedi farklı pencere boyutunda simüle edilmiş bir terminale yeniden
+çiziyor.
 
-```bash
-npm test
-```
+**Kanıtlanmamış olan:** macOS ve Linux. Ayrıca Claude'un ilk yedeğinizden önce
+sildiği sohbetler gitmiştir — onları hiçbir şey geri getiremez.
+
+Bir sorunla mı karşılaştınız? [Issue açın](https://github.com/veax-project/claude-cairn/issues/new/choose).
 
 ---
-
-## Lisans
 
 MIT
