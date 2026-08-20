@@ -47,15 +47,25 @@ goto done
 echo.
 echo   Fetching Cairn...
 echo.
+rem The archive is unpacked to one side and then the directory that actually
+rem holds src\cli.js is moved into place. Zip tools disagree about whether to
+rem include a top-level folder, and guessing wrong leaves a launcher that
+rem downloads correctly and then cannot find what it downloaded.
 powershell -NoProfile -ExecutionPolicy Bypass -Command ^
   "$ErrorActionPreference = 'Stop';" ^
   "try {" ^
   "  [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;" ^
-  "  $zip = Join-Path $env:TEMP 'cairn-download.zip';" ^
+  "  $tmp = Join-Path $env:TEMP ('cairn-' + [Guid]::NewGuid().ToString('N'));" ^
+  "  $zip = $tmp + '.zip';" ^
   "  Invoke-WebRequest -Uri '%RELEASE%' -OutFile $zip -UseBasicParsing;" ^
+  "  Expand-Archive -Path $zip -DestinationPath $tmp -Force;" ^
+  "  $entry = Get-ChildItem -Path $tmp -Recurse -Filter 'cli.js' | Where-Object { $_.Directory.Name -eq 'src' } | Select-Object -First 1;" ^
+  "  if (-not $entry) { throw 'the downloaded archive does not contain src/cli.js' }" ^
+  "  $root = $entry.Directory.Parent.FullName;" ^
   "  if (Test-Path '%CAIRN_HOME%') { Remove-Item '%CAIRN_HOME%' -Recurse -Force }" ^
-  "  Expand-Archive -Path $zip -DestinationPath '%CAIRN_HOME%' -Force;" ^
-  "  Remove-Item $zip -Force" ^
+  "  New-Item -ItemType Directory -Path '%CAIRN_HOME%' -Force | Out-Null;" ^
+  "  Copy-Item -Path (Join-Path $root '*') -Destination '%CAIRN_HOME%' -Recurse -Force;" ^
+  "  Remove-Item $zip, $tmp -Recurse -Force" ^
   "} catch { Write-Host ('  ' + $_.Exception.Message); exit 1 }"
 exit /b %errorlevel%
 
