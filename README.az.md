@@ -18,6 +18,11 @@ npx claude-cairn
 
 Bu komanda yuxarıdakı ekranı açır. Siz nəyisə seçməyincə heç nə dəyişmir.
 
+**Terminaldən istifadə sizə çətindirmi?**
+[Cairn.cmd](https://github.com/veax-project/claude-cairn/releases/latest/download/Cairn.cmd)
+faylını yükləyib iki dəfə klikləyin. Eyni işi görür və nəyisə quraşdırmaq
+lazımdırsa, bunu sizə bildirir.
+
 ---
 
 ## Problem nədir

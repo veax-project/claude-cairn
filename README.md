@@ -17,6 +17,11 @@ npx claude-cairn
 
 That opens the screen above. Nothing is changed until you choose something.
 
+**Not comfortable with a terminal?** Download
+[Cairn.cmd](https://github.com/veax-project/claude-cairn/releases/latest/download/Cairn.cmd)
+and double-click it. It does the same thing, and tells you what to install if
+anything is missing.
+
 ---
 
 ## What is going wrong

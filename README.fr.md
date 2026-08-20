@@ -19,6 +19,11 @@ npx claude-cairn
 Cette commande ouvre l'écran ci-dessus. Rien n'est modifié tant que vous n'avez
 rien choisi.
 
+**Pas à l'aise avec un terminal ?** Téléchargez
+[Cairn.cmd](https://github.com/veax-project/claude-cairn/releases/latest/download/Cairn.cmd)
+et double-cliquez dessus. Ça fait exactement la même chose, et ça vous dit
+quoi installer s'il manque quelque chose.
+
 ---
 
 ## Ce qui cloche
