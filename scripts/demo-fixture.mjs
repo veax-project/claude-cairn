@@ -15,7 +15,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 
-const ACCOUNTS = [
+export const ACCOUNTS = [
   { account: '7c1e05a4-1f2b-4d3c-9a8e-0b6d4f2a1c93', org: '2f9a7b31-5c4d-4e8a-b1f6-3d7e9c0a4b25' },
   { account: 'b48f2d61-9e37-4a05-8c72-1f5b6d0e3a97', org: '2f9a7b31-5c4d-4e8a-b1f6-3d7e9c0a4b25' },
   { account: 'd92c6e78-3a41-4b90-a5d8-7e2f1c8b0d46', org: '6b3d8f52-7a19-4c6e-9d02-5f8a1e4b7c30' },
