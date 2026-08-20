@@ -1,44 +1,63 @@
-[English](README.md) · [Français](README.fr.md) · [Türkçe](README.tr.md) · [Azərbaycanca](README.az.md)
+<div align="center">
+
+<img src="docs/hero.svg" alt="Cairn — your Claude Code conversations, on every account" width="100%">
+
+<br><br>
 
 # Cairn
 
-**Your Claude Code conversations, on every account.**
+**Your Claude Code conversations, on every account.**<br>
+Saved before Claude deletes them, and shared with every account you sign into.
 
-<p align="center">
-  <img src="docs/home.svg" alt="Cairn" width="810">
-</p>
+<br>
 
-You signed into a different Claude account and your conversations vanished.
-They are not gone. Cairn brings them back, and stops it happening again.
+[![License: MIT](https://img.shields.io/badge/License-MIT-D97757?style=flat-square)](LICENSE)
+[![For Claude Code](https://img.shields.io/badge/for-Claude%20Code-1B1B1F?style=flat-square)](https://claude.com/claude-code)
+[![Dependencies: none](https://img.shields.io/badge/dependencies-none-3A3A44?style=flat-square)](#-where-your-data-goes)
+[![No network calls](https://img.shields.io/badge/network%20calls-none-3A3A44?style=flat-square)](#-where-your-data-goes)
+[![Status: beta](https://img.shields.io/badge/status-beta-D6A854?style=flat-square)](#-beta)
+
+🇬🇧 English · 🇫🇷 [Français](README.fr.md) · 🇹🇷 [Türkçe](README.tr.md) · 🇦🇿 [Azərbaycanca](README.az.md)
+
+</div>
+
+<br>
 
 ---
 
-## Install
+## 🎯 Why
 
-### Windows
+You signed into a different Claude account and your conversations vanished.
 
-**1.** [**⬇ Download Cairn.cmd**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd) — your browser may ask whether to keep the file. Keep it.
+**They are not gone.** They are on your disk, exactly where they were. Claude
+keeps a separate list for each account, and after you sign in somewhere else it
+is reading the wrong list.
 
-**2.** **Double-click** the file you just downloaded.
+There is a second problem, quieter and worse: **Claude Code deletes
+conversations after 30 days.** By default, without telling you. Most people
+find out when something they wanted is already gone.
 
-**3.** The screen above opens. Press **`1`**, wait a few seconds.
+Cairn fixes both, then gets out of the way.
 
-**4.** **Quit Claude completely** and open it again.
+---
+
+## 🚀 Install
+
+### 🪟 Windows — no terminal needed
+
+| | |
+|---|---|
+| **1** | [**⬇ Download `Cairn.cmd`**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd) — your browser may ask whether to keep the file. Keep it. |
+| **2** | **Double-click** it. |
+| **3** | Press **`1`**, wait a few seconds. |
+| **4** | **Quit Claude completely**, then open it again. |
 
 Done. Your conversations are back in the sidebar.
 
-> **Why quit and reopen Claude?** It reads its list of conversations once, at
-> startup. Cairn can add to that list, but Claude will not notice until the
-> next launch.
+Run it once more and press **`3`** to turn on automatic sync, so this was the
+last time you had to do anything.
 
-Then run it once more and press **`3`** to turn on automatic sync, so you never
-have to do this again.
-
-> Cairn needs [Node.js](https://nodejs.org) — most developers already have it.
-> If you do not, the window tells you so and points you there. Install the
-> version marked **LTS**, then double-click Cairn.cmd again.
-
-### Mac, Linux, or if you prefer a terminal
+### 🍎 macOS / 🐧 Linux
 
 ```bash
 npx github:veax-project/claude-cairn
@@ -46,37 +65,30 @@ npx github:veax-project/claude-cairn
 
 Same screen, same steps.
 
----
+<br>
 
-## What is going wrong
+> ### ⚠️ Then quit and reopen Claude
+> Claude reads its list of conversations **once, at startup**. Cairn can add to
+> that list, but Claude will not notice until the next launch. This is the #1
+> reason people think it did not work.
 
-**Switching accounts hides your history.** Your conversations are still on your
-disk, untouched. Claude simply keeps a separate list for each account, and
-after you sign in somewhere else it is reading the wrong list.
-
-**And Claude Code deletes conversations after 30 days.** By default, quietly,
-whether or not you switch accounts. Most people find out when something they
-wanted is already gone.
-
----
-
-## What Cairn does about it
-
-Three things, then it leaves you alone.
-
-**It saves them.** Every conversation is copied somewhere Claude does not
-delete from. That copy is yours, and nothing removes it.
-
-**It shares them.** Every account on your computer gets every conversation —
-in both directions. Start something on one account, switch to another, it is
-there. Go back, and the work you did in between is there too.
-
-**It watches.** Turn on automatic sync and the two above happen every ten
-minutes, starting with your computer. You never think about it again.
+> ### 📦 It needs [Node.js](https://nodejs.org)
+> Most developers already have it. If you do not, the window tells you so and
+> points you there — install the version marked **LTS**, then run it again.
 
 ---
 
-## Let Claude search your own history
+## ✨ What it does
+
+- 💾 **Saves them.** Every conversation is copied somewhere Claude does not delete from. That copy is yours, and nothing removes it.
+- 🔄 **Shares them.** Every account on your computer gets every conversation — **in both directions**. Start something on one account, switch to another, it is there. Go back, and the work you did in between is there too.
+- 👁️ **Watches.** Turn on automatic sync and both happen every ten minutes, starting with your computer. You never think about it again.
+- 🔎 **Lets Claude search it.** From any account, including one you made five minutes ago.
+- ↩️ **Undoes itself.** One command removes exactly what it wrote, and nothing else.
+
+---
+
+## 🔌 Let Claude search your own history
 
 ```bash
 npx github:veax-project/claude-cairn install-mcp
@@ -86,67 +98,55 @@ Restart Claude, then ask it things like:
 
 > *search my old conversations for how we fixed the auth bug*
 
-This works on **any** account, including one you created five minutes ago. That
-is the point: this connection belongs to your computer, not to an account, so a
-brand-new account can reach everything you have ever done.
+<div align="center">
+<img src="docs/accounts.svg" alt="The accounts screen" width="820">
+</div>
 
-<p align="center">
-  <img src="docs/accounts.svg" alt="The accounts screen" width="810">
-</p>
-
----
-
-## Questions people ask
-
-**Where does my data go?**
-
-Nowhere. Cairn copies files from one folder on your computer to another folder
-on your computer. There are no dependencies, no telemetry, no update check, and
-no network calls at all — turn off your wifi and every command still works.
-That is the easiest way to check for yourself.
-
-**What if it breaks something?**
-
-```bash
-npx github:veax-project/claude-cairn undo
-```
-
-That removes exactly what the last sync added, and nothing else. It recognises
-its own files by size and timestamp, so anything Claude has touched since is
-left alone. Nothing is ever deleted from your backup.
-
-**Why are some of my accounts shown as a code instead of a name?**
-
-Because nothing on your computer says who they belonged to. Claude only
-identifies the account you are signed into right now, so Cairn writes that name
-down each time it runs. Every account you use from now on names itself the
-first time you sign in. For older ones, press **4** and name them by hand — the
-list shows what each account started with and when you last used it, which is
-usually enough to jog your memory.
-
-**Does it work on Mac or Linux?**
-
-Honestly: unknown. Cairn was built and verified on Windows. The Mac and Linux
-code is written and reviewed but has never been run on a real machine. If you
-try it, [tell us what happened](https://github.com/veax-project/claude-cairn/issues/new?template=platform_report.md)
-— that is the only way it gets fixed.
-
-**Does this work for my normal Claude chats too?**
-
-No. Only Claude Code. Regular chats live on Anthropic's servers and cannot be
-moved between accounts — that is a limit of the product, not of this tool. Use
-*Settings → Privacy → Export Data* before you abandon an account.
-
-**Can it put old conversations into a new account's chat history?**
-
-For Claude Code, yes — that is exactly what it does. For regular chats, no, and
-neither can anything else: there is no way to write a past reply into a Claude
-account. Any tool that claims otherwise is re-sending your side of the
-conversation and letting Claude answer fresh.
+This works on **any** account, including a brand-new one. That is the whole
+point: the connection belongs to your computer, not to an account.
 
 ---
 
-## Commands
+## 🧯 Troubleshooting
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| 😐 Nothing came back | Claude was already open | **Quit it completely** and reopen — it only reads the list at startup |
+| 🪟 The window closed instantly | Node.js is missing | Install it from [nodejs.org](https://nodejs.org), pick **LTS**, run the file again |
+| 🤷 A conversation is still missing | It belonged to a different project | The sidebar is filtered by project — open that project's folder |
+| 🔢 Accounts show as codes | Nothing on your disk says who they were | Press **`4`** and name them; new accounts name themselves |
+| 😱 It made things worse | — | `undo` puts everything back exactly as it was |
+| 🍎 Nothing at all on a Mac | Never tested there | [Tell us what happened](https://github.com/veax-project/claude-cairn/issues/new?template=platform_report.md) — that is the only way it gets fixed |
+
+---
+
+## 🛡️ Where your data goes
+
+**Nowhere.** Cairn copies files from one folder on your computer to another
+folder on your computer.
+
+- 🚫 **Zero dependencies.** The `dependencies` block in `package.json` is empty.
+- 🚫 **Zero network calls.** No telemetry, no update check, no analytics. **Turn off your wifi and every command still works** — the easiest way to check for yourself.
+- 🔌 The MCP server talks to Claude over standard input and output. It opens no socket.
+- 🗑️ **Nothing is ever deleted** from your backup. Not even by Cairn.
+- ↩️ `undo` removes only what it wrote, recognised by size and timestamp — anything Claude has touched since is left alone.
+
+<details>
+<summary><b>📄 See exactly what you are installing</b></summary>
+
+<br>
+
+Around 3000 lines of plain JavaScript, no build step, no bundler. Eleven files
+in `src/`, and you can read any of them.
+
+The launcher is a 90-line `.cmd` that checks for Node, downloads the release
+archive, and runs it. It is pure ASCII and does nothing else.
+
+</details>
+
+---
+
+## 📋 Commands
 
 | Command | What it does |
 |---|---|
@@ -163,15 +163,14 @@ conversation and letting Claude answer fresh.
 Your backup lives in `~/ClaudeCairn`. Move it with `--vault <folder>` or the
 `CAIRN_VAULT` environment variable.
 
-**Requirements:** Node 22.16 or newer. Nothing else — Cairn has no
-dependencies.
-
 ---
 
-## How it works
+## 🔬 How it works
 
-*You do not need this to use Cairn. It is here because a tool that touches your
-conversations should be able to explain itself.*
+<details>
+<summary><b>You do not need this to use Cairn — but a tool that touches your conversations should be able to explain itself</b></summary>
+
+<br>
 
 Claude Code keeps two separate things, in two separate places:
 
@@ -187,35 +186,45 @@ Claude Code keeps two separate things, in two separate places:
 
 Cairn copies the first somewhere safe, and writes the second under every
 account it finds. Conversations are only ever appended to, so a file that has
-not grown is skipped, and nothing is ever removed from the backup — a
-conversation Claude has already deleted stays, because that copy is now the
-only one in existence.
+not grown is skipped. Nothing is ever removed from the backup — a conversation
+Claude has already deleted stays, because that copy is now the only one in
+existence.
 
 Claude checks each sidebar entry against a strict shape before it will list it,
 and silently drops anything that does not match. Cairn builds them from the
-shape observed in real files: timestamps as numbers rather than text, no extra
-fields, and no placeholder values that occasionally appear in transcripts.
+shape observed in real files: **timestamps as numbers rather than text**, no
+extra fields, and none of the placeholder values that occasionally appear in
+transcripts.
 
 The search index is SQLite full-text search, using the copy that ships inside
-Node. The MCP server talks to Claude over standard input and output and opens
-no socket.
+Node. That is why there are no dependencies.
+
+</details>
 
 ---
 
-## Beta
+## ⚠️ Beta
 
-This is a first release. It has been verified end to end on Windows: 23
-conversations that had been invisible for weeks came back into the sidebar
-after a restart, and every entry Cairn wrote was accepted.
+A first release. Verified end to end on Windows: **23 conversations that had
+been invisible for weeks came back** into the sidebar after a restart, and
+every entry Cairn wrote was accepted.
 
-There are 21 automated tests, including one that replays the interface onto a
-simulated terminal at seven window sizes to catch layout faults.
+21 automated tests, including one that replays the interface onto a simulated
+terminal at seven window sizes to catch layout faults.
 
-**What is not proven:** macOS and Linux. And conversations Claude deleted
-before your first backup are gone — nothing can bring those back.
+| | |
+|---|---|
+| ✅ **Proven** | Windows |
+| ❓ **Never run** | macOS, Linux — the code is written and reviewed, nothing more |
+| ❌ **Impossible** | Conversations Claude deleted before your first backup. Nothing brings those back. |
+| ❌ **Out of scope** | Regular claude.ai chats. Those live on Anthropic's servers and cannot be moved between accounts — a limit of the product, not of this tool. |
 
-Found a problem? [Open an issue](https://github.com/veax-project/claude-cairn/issues/new/choose).
+[Open an issue](https://github.com/veax-project/claude-cairn/issues/new/choose) — especially if you are on a Mac.
 
 ---
 
-MIT
+<div align="center">
+
+**MIT** · Built because switching accounts should not cost you your work.
+
+</div>

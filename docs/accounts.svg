@@ -1,22 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="810" height="304" viewBox="0 0 810 304" font-family='ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace' font-size="14">
 <rect width="810" height="304" rx="10" fill="#1c1b1a"/>
-<text x="22.0" y="36" fill="rgb(217,119,87)" xml:space="preserve">┄┄</text>
-<text x="47.3" y="36" fill="rgb(217,119,87)" xml:space="preserve">✻</text>
-<text x="64.1" y="36" fill="#d8d4cf" font-weight="600" xml:space="preserve">Cairn</text>
-<text x="114.6" y="36" fill="rgb(217,119,87)" xml:space="preserve">┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄</text>
-<text x="38.8" y="76" fill="#d8d4cf" font-weight="600" xml:space="preserve">Accounts</text>
-<text x="38.8" y="96" fill="#d8d4cf" opacity="0.55" xml:space="preserve">3 on this machine · each holds all 24 conversations</text>
-<text x="38.8" y="116" fill="#d8d4cf" opacity="0.55" xml:space="preserve">Accounts you sign into from now on name themselves. Pick one to name it.</text>
-<text x="38.8" y="156" fill="rgb(217,119,87)" xml:space="preserve">❯</text>
-<text x="55.7" y="156" fill="#d8d4cf" opacity="0.55" xml:space="preserve">1.</text>
-<text x="80.9" y="156" fill="rgb(217,119,87)" xml:space="preserve">Jane Doe</text>
-<text x="148.3" y="156" fill="rgb(126,196,145)" xml:space="preserve">   ← signed in now</text>
-<text x="72.5" y="176" fill="#d8d4cf" opacity="0.55" xml:space="preserve">jane@example.com</text>
-<text x="55.7" y="196" fill="#d8d4cf" opacity="0.55" xml:space="preserve">2.</text>
-<text x="80.9" y="196" fill="#d8d4cf" opacity="0.55" xml:space="preserve">b48f2d61…</text>
-<text x="55.7" y="216" fill="#d8d4cf" opacity="0.55" xml:space="preserve">3.</text>
-<text x="80.9" y="216" fill="#d8d4cf" opacity="0.55" xml:space="preserve">d92c6e78…</text>
-<text x="55.7" y="236" fill="#d8d4cf" opacity="0.55" xml:space="preserve">4.</text>
-<text x="72.5" y="236" fill="#d8d4cf" xml:space="preserve"> Back                                                                                </text>
-<text x="38.8" y="276" fill="#d8d4cf" opacity="0.55" xml:space="preserve">↑↓ move · 1-9 pick · enter name it · q back</text>
+<text x="22.0" y="36.0" fill="rgb(217,119,87)" xml:space="preserve">┄┄</text>
+<text x="47.3" y="36.0" fill="rgb(217,119,87)" xml:space="preserve">✻</text>
+<text x="64.1" y="36.0" fill="#d8d4cf" font-weight="600" xml:space="preserve">Cairn</text>
+<text x="114.6" y="36.0" fill="rgb(217,119,87)" xml:space="preserve">┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄</text>
+<text x="38.8" y="76.0" fill="#d8d4cf" font-weight="600" xml:space="preserve">Accounts</text>
+<text x="38.8" y="96.0" fill="#d8d4cf" opacity="0.55" xml:space="preserve">3 on this machine · each holds all 24 conversations</text>
+<text x="38.8" y="116.0" fill="#d8d4cf" opacity="0.55" xml:space="preserve">Accounts you sign into from now on name themselves. Pick one to name it.</text>
+<text x="38.8" y="156.0" fill="rgb(217,119,87)" xml:space="preserve">❯</text>
+<text x="55.7" y="156.0" fill="#d8d4cf" opacity="0.55" xml:space="preserve">1.</text>
+<text x="80.9" y="156.0" fill="rgb(217,119,87)" xml:space="preserve">Jane Doe</text>
+<text x="148.3" y="156.0" fill="rgb(126,196,145)" xml:space="preserve">   ← signed in now</text>
+<text x="72.5" y="176.0" fill="#d8d4cf" opacity="0.55" xml:space="preserve">jane@example.com</text>
+<text x="55.7" y="196.0" fill="#d8d4cf" opacity="0.55" xml:space="preserve">2.</text>
+<text x="80.9" y="196.0" fill="#d8d4cf" opacity="0.55" xml:space="preserve">b48f2d61…</text>
+<text x="55.7" y="216.0" fill="#d8d4cf" opacity="0.55" xml:space="preserve">3.</text>
+<text x="80.9" y="216.0" fill="#d8d4cf" opacity="0.55" xml:space="preserve">d92c6e78…</text>
+<text x="55.7" y="236.0" fill="#d8d4cf" opacity="0.55" xml:space="preserve">4.</text>
+<text x="72.5" y="236.0" fill="#d8d4cf" xml:space="preserve"> Back                                                                                </text>
+<text x="38.8" y="276.0" fill="#d8d4cf" opacity="0.55" xml:space="preserve">↑↓ move · 1-9 pick · enter name it · q back</text>
 </svg>
