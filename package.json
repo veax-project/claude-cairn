@@ -1,0 +1,53 @@
+{
+  "name": "claude-cairn",
+  "version": "1.0.0-beta.1",
+  "description": "Keep your Claude Code conversations forever, across every account. Backs them up before Claude deletes them at 30 days, and gives every account on your machine every conversation.",
+  "type": "module",
+  "bin": {
+    "cairn": "src/cli.js"
+  },
+  "main": "src/cli.js",
+  "engines": {
+    "node": ">=22.16.0"
+  },
+  "scripts": {
+    "start": "node src/cli.js",
+    "test": "node test/smoke.js && node test/screen.js",
+    "screenshots": "node scripts/screenshot.mjs docs/home.svg \"\" 92 30 && node scripts/screenshot.mjs docs/accounts.svg \"4,wait\" 92 30"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "anthropic",
+    "backup",
+    "archive",
+    "sessions",
+    "conversations",
+    "mcp",
+    "history"
+  ],
+  "author": "veax-project",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/veax-project/claude-cairn.git"
+  },
+  "bugs": {
+    "url": "https://github.com/veax-project/claude-cairn/issues"
+  },
+  "homepage": "https://github.com/veax-project/claude-cairn#readme",
+  "files": [
+    "src",
+    "README.md",
+    "README.fr.md",
+    "README.tr.md",
+    "README.az.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "publishConfig": {
+    "tag": "beta"
+  }
+}

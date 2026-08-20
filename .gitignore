@@ -1,0 +1,13 @@
+node_modules/
+*.log
+.DS_Store
+Thumbs.db
+vault/
+exports/
+*.db
+
+# Local vault, never committed
+ClaudeCairn/
+restore-log.json
+manifest.json
+accounts.json
