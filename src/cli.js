@@ -11,6 +11,7 @@
  */
 
 import fs from 'node:fs'
+import os from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { backup, listVault, vaultSize } from './vault.js'
@@ -360,22 +361,41 @@ async function doReindex() {
  * sign into a new account and the archive is already reachable.
  */
 async function doInstallMcp() {
-  const configFile = path.join(appDataDir(), 'claude_desktop_config.json')
-  const config = readJson(configFile, {}) || {}
+  // ~/.claude.json, not claude_desktop_config.json. The desktop app rewrites
+  // the latter from its own state: an entry added there was found gone a few
+  // days later, without a word. Servers registered here survive that, and
+  // survive signing into a different account, which is the whole point.
+  const configFile = path.join(os.homedir(), '.claude.json')
+  const config = readJson(configFile, null)
+
+  if (!config) {
+    console.log(`  ${c.warn('✗')} Could not read ${configFile}`)
+    console.log(`  ${c.dim('Run Claude Code once so it creates its configuration, then try again.')}\n`)
+    return
+  }
+
   config.mcpServers = config.mcpServers || {}
 
-  // Absolute paths: the desktop app does not inherit the terminal's PATH.
+  // Absolute paths: the app does not inherit the terminal's PATH.
   config.mcpServers['claude-cairn'] = {
+    type: 'stdio',
     command: process.execPath,
     args: [fileURLToPath(new URL('./cli.js', import.meta.url)), 'mcp', '--vault', vault],
+    env: {},
   }
 
   writeJson(configFile, config)
+
+  const others = Object.keys(config.mcpServers).filter((n) => n !== 'claude-cairn')
   console.log(`  ${c.ok('✓')} Registered as an MCP server.`)
   console.log(`    ${c.dim(configFile)}`)
+  if (others.length) console.log(`    ${c.dim(`alongside ${others.join(', ')}`)}`)
   console.log('')
   console.log(`  ${c.bold('Restart Claude')}, then ask it:`)
-  console.log(`    ${c.dim('"search my old conversations for the auth bug"')}\n`)
+  console.log(`    ${c.dim('"search my old conversations for the auth bug"')}`)
+  console.log('')
+  console.log(`  ${c.dim('This one lives with the machine rather than the account, so it keeps')}`)
+  console.log(`  ${c.dim('working when you sign in somewhere else.')}\n`)
 }
 
 function help() {
