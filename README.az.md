@@ -133,6 +133,12 @@ You had these, this account does not
 > icazədir; kompüterinizdə köçürüləcək token yoxdur. Yaxşı xəbər: eyni xidmət
 > istədiyiniz qədər Claude hesabına qoşula bilər — yeganə xərc kliklərdir, bu
 > siyahı isə yadda saxlamaq məcburiyyətindən azad edir.
+
+> **Yerli MCP serverləri isə ayrı məsələdir.** `~/.claude.json` içindəkilər —
+> giriş etməklə deyil, komanda ilə əlavə etdikləriniz — onsuz da kompüterə
+> bağlıdır, ona görə də hesablar arasında özləri sizinlə gəlir. Geridə
+> qalanlar brauzerdə icazə verdiyiniz uzaq qoşulmalardır.
+
 ---
 
 ## 🧯 Problemlərin həlli

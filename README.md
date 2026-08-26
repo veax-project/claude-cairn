@@ -132,6 +132,12 @@ You had these, this account does not
 > same service can be connected to as many Claude accounts as you like — so the
 > only cost is the clicking, and this is the list so you do not have to remember
 > it.
+
+> **Local MCP servers are a different story.** The ones in `~/.claude.json` —
+> added with a command rather than a sign-in — already live with the machine,
+> so they follow you across accounts on their own. It is the remote connectors,
+> the ones you authorise in a browser, that stay behind.
+
 ---
 
 ## 🧯 Troubleshooting

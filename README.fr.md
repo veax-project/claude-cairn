@@ -136,6 +136,13 @@ You had these, this account does not
 > La bonne nouvelle : le même service peut être relié à autant de comptes Claude
 > que vous voulez — le seul coût, ce sont les clics, et voici la liste pour ne
 > pas avoir à vous en souvenir.
+
+> **Les serveurs MCP locaux, c'est autre chose.** Ceux de `~/.claude.json` —
+> ajoutés par une commande plutôt que par une connexion — sont déjà rattachés à
+> la machine, donc ils vous suivent d'un compte à l'autre tout seuls. Ce sont
+> les connecteurs distants, ceux qu'on autorise dans le navigateur, qui restent
+> en arrière.
+
 ---
 
 ## 🧯 Dépannage

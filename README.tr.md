@@ -132,6 +132,12 @@ You had these, this account does not
 > yetkilendirmedir; bilgisayarınızda kopyalanacak bir token yoktur. İyi haber:
 > aynı servis istediğiniz kadar Claude hesabına bağlanabilir — tek maliyet
 > tıklamalar, bu liste sayesinde de hatırlamak zorunda kalmazsınız.
+
+> **Yerel MCP sunucuları başka bir konu.** `~/.claude.json` içindekiler —
+> oturum açarak değil, komutla eklediğiniz türden olanlar — zaten makineye
+> bağlıdır, dolayısıyla hesaplar arasında kendiliğinden sizinle gelir. Geride
+> kalanlar, tarayıcıda yetkilendirdiğiniz uzak bağlayıcılardır.
+
 ---
 
 ## 🧯 Sorun giderme
