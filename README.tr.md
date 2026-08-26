@@ -107,6 +107,33 @@ bağlantı bir hesaba değil, bilgisayarınıza aittir.
 
 ---
 
+## 🔗 Bağlayıcılar
+
+Cairn her hesabın hangi bağlayıcıları kullandığını da not eder — Vercel,
+Gmail, Stripe, Supabase ve diğerleri — ve yeni bir hesapta hangilerinin eksik
+olduğunu söyler.
+
+```bash
+npx github:veax-project/claude-cairn connectors
+```
+
+```
+On this account
+  OK  Vercel          37 tools, last used 2026-08-26
+
+You had these, this account does not
+  --  Resend          91 tools, last used 2026-08-04
+  --  Stripe           9 tools, last used 2026-08-04
+  --  Supabase        29 tools, last used 2026-08-04
+```
+
+> **Onları yeniden bağlayamaz, başka hiçbir şey de bağlayamaz.** Bir servisi
+> Claude'a bağlamak, Anthropic'in sunucularında tek bir hesap için tutulan bir
+> yetkilendirmedir; bilgisayarınızda kopyalanacak bir token yoktur. İyi haber:
+> aynı servis istediğiniz kadar Claude hesabına bağlanabilir — tek maliyet
+> tıklamalar, bu liste sayesinde de hatırlamak zorunda kalmazsınız.
+---
+
 ## 🧯 Sorun giderme
 
 | Belirti | Nedeni | Çözüm |
@@ -156,6 +183,7 @@ bir `.cmd` dosyasıdır. Tamamen ASCII'dir ve başka hiçbir şey yapmaz.
 | `cairn status` | Burada ne var, ne gizli, ne risk altında |
 | `cairn undo` | Son eşitlemenin yazdığı şeyi tam olarak siler |
 | `cairn search <kelimeler>` | Her hesapta arama yapar |
+| `cairn connectors` | Bu hesapta eksik olan bağlayıcılar |
 | `cairn install-mcp` | Claude'un arşivde kendi başına arama yapmasını sağlar |
 | `cairn export` | Her konuşmayı Markdown olarak dışa aktarır |
 | `cairn pack` | Konuşmaları bir sohbete eklemek için tek dosyada toplar |

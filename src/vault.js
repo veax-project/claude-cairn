@@ -16,6 +16,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { buildInventory, deriveTitle, readTranscriptMeta } from './scan.js'
 import { captureIdentity } from './accounts.js'
+import { captureConnectors } from './connectors.js'
 import { defaultVaultDir, readJson, writeJson } from './paths.js'
 
 const MANIFEST_VERSION = 1
@@ -60,6 +61,10 @@ export function backup(options = {}) {
   // Note who is signed in. Nothing else on this machine records it, so the
   // only chance to learn an account's name is while it is in use.
   captureIdentity(vault)
+
+  // The list of connectors lives only in the session files of accounts that
+  // still have a folder. Once one is cleaned up, this is the only record.
+  captureConnectors(vault)
 
   fs.mkdirSync(path.join(vault, 'sessions'), { recursive: true })
 

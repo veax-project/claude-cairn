@@ -107,6 +107,33 @@ point: the connection belongs to your computer, not to an account.
 
 ---
 
+## 🔗 Connectors
+
+Cairn also notes which connectors each account had — Vercel, Gmail, Stripe,
+Supabase and the rest — and tells you which ones a new account is missing.
+
+```bash
+npx github:veax-project/claude-cairn connectors
+```
+
+```
+On this account
+  OK  Vercel          37 tools, last used 2026-08-26
+
+You had these, this account does not
+  --  Resend          91 tools, last used 2026-08-04
+  --  Stripe           9 tools, last used 2026-08-04
+  --  Supabase        29 tools, last used 2026-08-04
+```
+
+> **It cannot reconnect them, and neither can anything else.** Joining a
+> service to Claude is an authorisation held on Anthropic's servers against one
+> account; there is no token on your computer to copy. The good news is that the
+> same service can be connected to as many Claude accounts as you like — so the
+> only cost is the clicking, and this is the list so you do not have to remember
+> it.
+---
+
 ## 🧯 Troubleshooting
 
 | Symptom | Cause | Fix |
@@ -156,6 +183,7 @@ archive, and runs it. It is pure ASCII and does nothing else.
 | `cairn status` | What is here, what is hidden, what is at risk |
 | `cairn undo` | Remove exactly what the last sync wrote |
 | `cairn search <words>` | Search across every account |
+| `cairn connectors` | Which connectors this account is missing |
 | `cairn install-mcp` | Let Claude search the archive itself |
 | `cairn export` | Write every conversation out as Markdown |
 | `cairn pack` | Bundle conversations into one file to attach to a chat |

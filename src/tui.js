@@ -16,6 +16,7 @@ import { backup, listVault } from './vault.js'
 import { findMissing, mirror, mirroredFiles, restore } from './restore.js'
 import { disable, enable, isEnabled } from './autostart.js'
 import { hintFor, label, loadAccounts, setName } from './accounts.js'
+import { captureConnectors, connectorReport } from './connectors.js'
 import { reindex } from './db.js'
 import { defaultVaultDir, retentionDays } from './paths.js'
 
@@ -519,6 +520,7 @@ function working(title, body = []) {
  */
 function snapshot(vault) {
   const inventory = buildInventory()
+  captureConnectors(vault)
   const names = loadAccounts(vault)
   const mirrored = mirroredFiles(vault)
   const saved = listVault(vault)
@@ -568,6 +570,7 @@ function snapshot(vault) {
     unnamed: accounts.filter((a) => !a.label.known).length,
     retention: retentionDays(),
     auto: isEnabled(),
+    connectors: connectorReport(vault),
   }
 }
 
@@ -632,6 +635,49 @@ function compactSummary(state) {
       ? paint(G, '● Automatic sync on') + dim(' — every 10 min, starting with your computer.')
       : paint(Y, '○ Automatic sync off') + dim(` — Claude deletes conversations after ${state.retention.days} days.`),
   ]
+}
+
+/**
+ * Connectors cannot be moved between accounts: joining a service to Claude is
+ * an authorisation held on Anthropic's side, and no token for it exists on this
+ * machine. What Cairn can do is remember which ones you had.
+ */
+async function connectorsScreen(state) {
+  const { present, missing, all } = state.connectors
+  const when = (t) => (t ? new Date(t).toISOString().slice(0, 10) : '')
+
+  if (all.length === 0) {
+    return notice({
+      title: 'Connectors',
+      lines: [
+        dim('None seen yet.'),
+        '',
+        dim('They are noted as you use them. Come back after a session or two.'),
+      ],
+      footer: 'press any key to go back',
+    })
+  }
+
+  const lines = []
+  for (const item of present) {
+    lines.push(paint(G, '●') + ' ' + pad(item.name, 18) + dim(`${item.tools} tools · ${when(item.lastUsedAt)}`))
+  }
+  if (missing.length) {
+    if (present.length) lines.push('')
+    lines.push(paint(Y, 'Not on this account:'))
+    for (const item of missing) {
+      lines.push(dim('○') + ' ' + pad(item.name, 18) + dim(`${item.tools} tools · ${when(item.lastUsedAt)}`))
+    }
+    lines.push('')
+    lines.push('Add them back under ' + bold('Settings → Connectors') + dim(' in Claude.'))
+    lines.push(dim('Cairn cannot reconnect them — that authorisation lives on'))
+    lines.push(dim("Anthropic's side, not on this computer."))
+  } else {
+    lines.push('')
+    lines.push(paint(G, 'This account has every connector you have used.'))
+  }
+
+  return notice({ title: 'Connectors', lines, footer: 'press any key to go back' })
 }
 
 // ── account screen ──────────────────────────────────────────────────────────
@@ -714,6 +760,13 @@ export async function runTui({ vault = defaultVaultDir() } = {}) {
             : 'sync every 10 minutes from now on — and never think about this again',
         },
         {
+          value: 'connectors',
+          label: 'Connectors',
+          hint: state.connectors.missing.length > 0
+            ? `${state.connectors.missing.length} you have used are not on this account`
+            : 'what this account is connected to',
+        },
+        {
           value: 'accounts',
           label: 'Accounts',
           // Never open a hint with a bare number — next to a numbered menu it
@@ -727,6 +780,11 @@ export async function runTui({ vault = defaultVaultDir() } = {}) {
     })
 
     if (choice.value === 'quit') quit(0)
+
+    if (choice.value === 'connectors') {
+      await connectorsScreen(state)
+      continue
+    }
 
     if (choice.value === 'accounts') {
       await accountsScreen(vault)

@@ -110,6 +110,34 @@ l'intérêt : la connexion appartient à votre ordinateur, pas à un compte.
 
 ---
 
+## 🔗 Connecteurs
+
+Cairn note aussi quels connecteurs chaque compte utilisait — Vercel, Gmail,
+Stripe, Supabase et les autres — et vous dit lesquels manquent à un nouveau
+compte.
+
+```bash
+npx github:veax-project/claude-cairn connectors
+```
+
+```
+On this account
+  OK  Vercel          37 tools, last used 2026-08-26
+
+You had these, this account does not
+  --  Resend          91 tools, last used 2026-08-04
+  --  Stripe           9 tools, last used 2026-08-04
+  --  Supabase        29 tools, last used 2026-08-04
+```
+
+> **Il ne peut pas les rebrancher, et rien d'autre ne le peut.** Relier un
+> service à Claude est une autorisation conservée sur les serveurs d'Anthropic
+> pour un compte donné ; il n'existe aucun jeton à copier sur votre ordinateur.
+> La bonne nouvelle : le même service peut être relié à autant de comptes Claude
+> que vous voulez — le seul coût, ce sont les clics, et voici la liste pour ne
+> pas avoir à vous en souvenir.
+---
+
 ## 🧯 Dépannage
 
 | Symptôme | Cause | Solution |
@@ -160,6 +188,7 @@ rien d'autre.
 | `cairn status` | Ce qui est là, ce qui est caché, ce qui est en danger |
 | `cairn undo` | Retirer exactement ce que la dernière synchronisation a écrit |
 | `cairn search <words>` | Chercher dans tous les comptes |
+| `cairn connectors` | Les connecteurs qui manquent à ce compte |
 | `cairn install-mcp` | Laisser Claude chercher lui-même dans l'archive |
 | `cairn export` | Écrire chaque conversation en Markdown |
 | `cairn pack` | Regrouper des conversations dans un seul fichier à joindre à une discussion |

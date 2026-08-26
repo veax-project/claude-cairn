@@ -15,6 +15,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { backup, listVault, vaultSize } from './vault.js'
 import { findMissing, mirror, restore, undo } from './restore.js'
+import { captureConnectors, connectorReport } from './connectors.js'
 import { disable, enable, entryPath, isEnabled } from './autostart.js'
 import { reindex, search, stats } from './db.js'
 import { exportAll, renderPack } from './markdown.js'
@@ -62,6 +63,7 @@ switch (command) {
   case 'autostart': await doAutostart(); break
   case 'restore': await doRestore(); break
   case 'undo': await doUndo(); break
+  case 'connectors': await doConnectors(); break
   case 'search': await doSearch(); break
   case 'export': await doExport(); break
   case 'pack': await doPack(); break
@@ -258,6 +260,52 @@ async function doUndo() {
   console.log('')
 }
 
+/**
+ * The connector checklist.
+ *
+ * Deliberately not called "restore": connecting a service to Claude is an
+ * authorisation held on Anthropic's servers against one account, and nothing
+ * on this machine could move it. What this removes is the remembering.
+ */
+async function doConnectors() {
+  captureConnectors(vault)
+  const report = connectorReport(vault)
+
+  if (report.all.length === 0) {
+    console.log(`  ${c.dim('No connectors seen yet.')}`)
+    console.log(`  ${c.dim('They are recorded as you use them — run this again after a session.')}\n`)
+    return
+  }
+
+  const when = (t) => (t ? new Date(t).toISOString().slice(0, 10) : '-')
+
+  if (report.present.length) {
+    console.log(`  ${c.bold('On this account')}`)
+    for (const item of report.present) {
+      console.log(`    ${c.ok('OK')} ${item.name.padEnd(16)} ${c.dim(`${item.tools} tools, last used ${when(item.lastUsedAt)}`)}`)
+    }
+    console.log('')
+  }
+
+  if (report.missing.length) {
+    console.log(`  ${c.bold('You had these, this account does not')}`)
+    for (const item of report.missing) {
+      console.log(`    ${c.warn('--')} ${item.name.padEnd(16)} ${c.dim(`${item.tools} tools, last used ${when(item.lastUsedAt)}`)}`)
+    }
+    console.log('')
+    console.log(`  ${c.dim('Add them back in Claude:')} ${c.bold('Settings > Connectors')}`)
+    console.log('')
+    console.log(`  ${c.dim('Cairn cannot reconnect them for you. Connecting a service is an')}`)
+    console.log(`  ${c.dim('authorisation held on Anthropic\'s side against one account, and there')}`)
+    console.log(`  ${c.dim('is no token on this computer to copy. The same service can be joined')}`)
+    console.log(`  ${c.dim('to as many accounts as you like, so nothing stands in the way of it -')}`)
+    console.log(`  ${c.dim('this is the list, so you do not have to remember it.')}`)
+  } else {
+    console.log(`  ${c.ok('OK')} This account has every connector you have used.`)
+  }
+  console.log('')
+}
+
 async function doSearch() {
   const query = argv.filter((a) => !a.startsWith('-') && a !== 'search').join(' ')
   if (!query) return console.log(`  ${c.warn('!')} ${c.bold('cairn search <words>')}\n`)
@@ -341,6 +389,7 @@ function help() {
     ['backup', 'Back up only, no syncing'],
     ['restore', 'Sync to the current account only  ' + c.dim('[--dry]')],
     ['undo', 'Undo everything the syncing wrote'],
+    ['connectors', 'Which connectors this account is missing'],
     ['search <words>', 'Search across every account'],
     ['install-mcp', 'Let Claude search the archive itself'],
     ['export', 'Write everything as Markdown  ' + c.dim('[--out DIR]')],
