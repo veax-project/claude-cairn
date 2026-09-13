@@ -87,6 +87,11 @@ const reference = (() => {
   return JSON.parse(fs.readFileSync(path.join(dir, file), 'utf8'))
 })()
 
+// Fields the app itself writes only on some entries, so a reference entry
+// picked at random will not have them: `isStarred` exists only while the
+// session is pinned.
+const OPTIONAL = new Set(['isStarred'])
+
 const typeOf = (v) => (Array.isArray(v) ? 'array' : v === null ? 'null' : typeof v)
 const problems = []
 
@@ -100,7 +105,7 @@ for (const name of written) {
     }
   }
   for (const key of Object.keys(entry)) {
-    if (!(key in reference)) problems.push(`${name}: unknown field ${key}`)
+    if (!(key in reference) && !OPTIONAL.has(key)) problems.push(`${name}: unknown field ${key}`)
   }
 
   // The two that actually broke it in the wild.

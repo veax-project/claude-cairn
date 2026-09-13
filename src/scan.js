@@ -230,6 +230,43 @@ export function deriveTitle(meta, cliSessionId) {
 }
 
 /**
+ * Combine two sidebar entries describing the same conversation under different
+ * accounts.
+ *
+ * Identity — which file to rewrite, and whether the conversation is visible
+ * right now — comes from the entry the signed-in account owns. Everything that
+ * describes the conversation comes from whichever entry knows most about it:
+ * the freshest activity, and a title the user typed in preference to one the
+ * app generated. A star set under any account counts as set.
+ */
+function mergeEntries(a, b) {
+  const owner = b.visibleNow && !a.visibleNow ? b : a
+  const other = owner === a ? b : a
+  const fresher = (other.lastActivityAt || 0) > (owner.lastActivityAt || 0) ? other : owner
+
+  const named =
+    owner.titleSource === 'user' ? owner
+    : other.titleSource === 'user' ? other
+    : fresher.title ? fresher
+    : owner
+
+  const earliest = Math.min(owner.createdAt || Infinity, other.createdAt || Infinity)
+
+  return {
+    ...owner,
+    title: named.title || owner.title || other.title,
+    titleSource: named.titleSource,
+    isStarred: owner.isStarred || other.isStarred,
+    createdAt: Number.isFinite(earliest) ? earliest : null,
+    lastActivityAt: Math.max(owner.lastActivityAt || 0, other.lastActivityAt || 0) || null,
+    completedTurns: Math.max(owner.completedTurns || 0, other.completedTurns || 0) || null,
+    transcript: owner.transcript || other.transcript,
+    hasTranscript: owner.hasTranscript || other.hasTranscript,
+    visibleNow: owner.visibleNow || other.visibleNow,
+  }
+}
+
+/**
  * The full picture: every session known to this machine, whether it is
  * currently visible in the app, and whether its transcript still exists.
  */
@@ -246,15 +283,12 @@ export function buildInventory() {
       const transcript = entry.cliSessionId ? transcripts.get(entry.cliSessionId) : null
       const visibleNow = current ? account.accountUuid === current.accountUuid : false
 
-      // After a restore the same conversation is filed under both the old
-      // account and the current one. The current one is the truth — otherwise
-      // it would be reported as still hidden.
-      if (sessions.has(id) && sessions.get(id).visibleNow && !visibleNow) continue
-
-      sessions.set(id, {
+      const candidate = {
         cliSessionId: entry.cliSessionId || null,
         sessionId: entry.sessionId,
         title: entry.title || null,
+        titleSource: entry.titleSource === 'user' ? 'user' : 'auto',
+        isStarred: entry.isStarred === true,
         cwd: entry.cwd || entry.originCwd || null,
         model: entry.model || null,
         createdAt: numeric(entry.createdAt),
@@ -268,7 +302,16 @@ export function buildInventory() {
         hasTranscript: Boolean(transcript),
         visibleNow,
         source: 'index',
-      })
+      }
+
+      // After a restore the same conversation is filed under both the old
+      // account and the current one. Which file to write stays the current
+      // account's — otherwise the session would be reported as still hidden —
+      // but the description of the conversation is merged across all of them.
+      // Cairn writes the current account's entry itself, so trusting it blindly
+      // makes the first backup's title and date permanent: it reads back what
+      // it wrote, and rewrites it unchanged, for ever.
+      sessions.set(id, sessions.has(id) ? mergeEntries(sessions.get(id), candidate) : candidate)
     }
   }
 
@@ -293,6 +336,8 @@ export function buildInventory() {
       hasTranscript: true,
       visibleNow: false,
       source: 'orphan',
+      titleSource: 'auto',
+      isStarred: false,
     })
   }
 

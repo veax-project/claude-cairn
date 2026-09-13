@@ -75,7 +75,14 @@ function buildIndexEntry(sessionId, cliSessionId, session) {
     effort: 'high',
     isArchived: false,
     title: session.title || `Session ${cliSessionId.slice(0, 8)}`,
-    titleSource: 'auto',
+    // A title the user typed stays the user's. The star is carried too, though
+    // the app keeps its own list of pinned sessions elsewhere, so a restored
+    // star may still need one click before it shows under Pinned.
+    titleSource: session.titleSource === 'user' ? 'user' : 'auto',
+    // Written only when set, because that is what the app does: of the 1719
+    // entries on the machine this was found on, the 16 carrying the field were
+    // all `true`. An unstarred entry has no `isStarred` key at all.
+    ...(session.isStarred === true ? { isStarred: true } : {}),
     // Never 'bypassPermissions': a restored session should not silently carry
     // skip-all permissions, and the app refuses that mode for sessions it did
     // not launch with the matching flag.

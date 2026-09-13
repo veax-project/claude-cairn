@@ -127,11 +127,24 @@ export function backup(options = {}) {
       cliSessionId: id,
       sessionId: session.sessionId || previous?.sessionId || null,
       title: session.title || deriveTitle(meta, id),
+      // Kept so a restore can hand the title and the star back to the app
+      // instead of downgrading them to something it generated itself.
+      titleSource: session.titleSource === 'user' ? 'user' : 'auto',
+      isStarred: session.isStarred === true || previous?.isStarred === true,
       cwd: session.cwd || meta.cwd || previous?.cwd || null,
       model: session.model || meta.model || null,
       gitBranch: meta.gitBranch || null,
       createdAt: session.createdAt || previous?.createdAt || null,
-      lastActivityAt: session.lastActivityAt || previous?.lastActivityAt || null,
+      // A sidebar entry can lag behind its own conversation: the app stops
+      // rewriting it once the window is closed, while background work keeps
+      // appending. The last message in the transcript is the honest answer,
+      // and it is read here anyway. File mtime would not do — restoring a
+      // conversation copies the file and stamps it with today.
+      lastActivityAt:
+        Math.max(
+          Number(session.lastActivityAt) || 0,
+          meta.lastTimestamp ? Date.parse(meta.lastTimestamp) || 0 : 0,
+        ) || previous?.lastActivityAt || null,
       completedTurns: session.completedTurns ?? meta.userMessages,
       userMessages: meta.userMessages,
       assistantMessages: meta.assistantMessages,

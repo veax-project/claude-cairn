@@ -1,6 +1,6 @@
 {
   "name": "claude-cairn",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Keep your Claude Code conversations forever, across every account. Backs them up before Claude deletes them at 30 days, and gives every account on your machine every conversation.",
   "type": "module",
   "bin": {

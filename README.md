@@ -47,7 +47,7 @@ Cairn fixes both, then gets out of the way.
 
 | | |
 |---|---|
-| **1** | [**⬇ Download `Cairn.cmd`**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd) — your browser may ask whether to keep the file. Keep it. |
+| **1** | [**⬇ Download `Cairn.cmd`**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.2/Cairn.cmd) — your browser may ask whether to keep the file. Keep it. |
 | **2** | **Double-click** it. |
 | **3** | Press **`1`**, wait a few seconds. |
 | **4** | **Quit Claude completely**, then open it again. |
