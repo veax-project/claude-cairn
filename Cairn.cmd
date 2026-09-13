@@ -23,7 +23,7 @@ cd /d "%~dp0"
 rem Windows Terminal handles 24-bit colour; Node cannot detect that on its own.
 set COLORTERM=truecolor
 
-set "RELEASE=https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/cairn.zip"
+set "RELEASE=https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.2/cairn.zip"
 set "CAIRN_HOME=%LOCALAPPDATA%\Cairn"
 
 where node >nul 2>nul

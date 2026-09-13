@@ -47,7 +47,7 @@ Cairn hər ikisini həll edir və sonra yolunuzdan çəkilir.
 
 | | |
 |---|---|
-| **1** | [**⬇ `Cairn.cmd` faylını yükləyin**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd) — brauzeriniz faylı saxlamaq istəyib-istəmədiyinizi soruşa bilər. Saxlayın. |
+| **1** | [**⬇ `Cairn.cmd` faylını yükləyin**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.2/Cairn.cmd) — brauzeriniz faylı saxlamaq istəyib-istəmədiyinizi soruşa bilər. Saxlayın. |
 | **2** | Faylın üzərinə **iki dəfə klikləyin**. |
 | **3** | **`1`** düyməsinə basın, bir neçə saniyə gözləyin. |
 | **4** | **Claude-u tamamilə bağlayın**, sonra yenidən açın. |

@@ -47,7 +47,7 @@ Cairn ikisini de çözer, sonra yolunuzdan çekilir.
 
 | | |
 |---|---|
-| **1** | [**⬇ `Cairn.cmd` dosyasını indirin**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.1/Cairn.cmd) — tarayıcınız dosyayı saklamak isteyip istemediğinizi sorabilir. Saklayın. |
+| **1** | [**⬇ `Cairn.cmd` dosyasını indirin**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.2/Cairn.cmd) — tarayıcınız dosyayı saklamak isteyip istemediğinizi sorabilir. Saklayın. |
 | **2** | Dosyaya **çift tıklayın**. |
 | **3** | **`1`** tuşuna basın, birkaç saniye bekleyin. |
 | **4** | **Claude'dan tamamen çıkın**, sonra yeniden açın. |
