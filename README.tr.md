@@ -242,7 +242,7 @@ Hiç bağımlılık olmamasının sebebi de bu.
 konuşma**, yeniden başlatmanın ardından kenar çubuğuna geri geldi ve Cairn'in
 yazdığı her kayıt kabul edildi.
 
-21 otomatik test var; bunlardan biri, yerleşim hatalarını yakalamak için arayüzü
+28 otomatik test var; bunlardan biri, yerleşim hatalarını yakalamak için arayüzü
 benzetilmiş bir terminalde yedi farklı pencere boyutunda yeniden çiziyor.
 
 | | |
@@ -251,6 +251,7 @@ benzetilmiş bir terminalde yedi farklı pencere boyutunda yeniden çiziyor.
 | ❓ **Hiç çalıştırılmadı** | macOS, Linux — kod yazıldı ve gözden geçirildi, o kadar |
 | ❌ **İmkânsız** | İlk yedeğinizden önce Claude'un sildiği konuşmalar. Onları hiçbir şey geri getirmez. |
 | ❌ **Kapsam dışı** | Normal claude.ai sohbetleri. Onlar Anthropic'in sunucularında durur ve hesaplar arasında taşınamaz — bu, aracın değil ürünün bir sınırı. |
+| ❌ **Yalnızca masaüstü** | Tarayıcıdaki Claude Code. Cairn dosyaları *bu makineye* geri koyar; claude.ai ise hesabınızın Anthropic sunucularında tuttuğunu listeler — geri gelen bir konuşma masaüstü uygulamasında ve buradaki terminalde çalışan `claude` içinde görünür, tarayıcıda asla. İkisini birleştirecek bir yol yok: biri diskinizdeki bir dosya, diğeri yazamayacağınız bir veritabanındaki bir satır. |
 
 [Bir konu açın](https://github.com/veax-project/claude-cairn/issues/new/choose) — özellikle de Mac kullanıyorsanız.
 

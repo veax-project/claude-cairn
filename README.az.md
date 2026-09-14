@@ -245,7 +245,7 @@ hazır gələn nüsxədən istifadə edir. Heç bir asılılığın olmamasını
 **həftələrlə görünməyən 23 söhbət** yan panelə qayıtdı və Cairn-in yazdığı hər
 qeyd qəbul edildi.
 
-21 avtomatlaşdırılmış test var; onlardan biri düzülüş xətalarını tutmaq üçün
+28 avtomatlaşdırılmış test var; onlardan biri düzülüş xətalarını tutmaq üçün
 interfeysi simulyasiya edilmiş terminalda yeddi fərqli pəncərə ölçüsündə
 yenidən çəkir.
 
@@ -255,6 +255,7 @@ yenidən çəkir.
 | ❓ **Heç vaxt işlədilməyib** | macOS, Linux — kod yazılıb və nəzərdən keçirilib, o qədər |
 | ❌ **Mümkün deyil** | İlk ehtiyat nüsxənizdən əvvəl Claude-un sildiyi söhbətlər. Onları heç nə geri qaytara bilməz. |
 | ❌ **Əhatə dairəsindən kənar** | Adi claude.ai söhbətləri. Onlar Anthropic-in serverlərində saxlanılır və hesablar arasında köçürülə bilməz — bu, alətin yox, məhsulun məhdudiyyətidir. |
+| ❌ **Yalnız masaüstü** | Brauzerdəki Claude Code. Cairn faylları *bu maşına* geri qoyur, claude.ai isə hesabınızın Anthropic serverlərində saxladığını siyahılayır — bərpa olunan söhbət masaüstü tətbiqinə və buradakı terminalda işləyən `claude`-a qayıdır, brauzerə heç vaxt. İkisini birləşdirən yol yoxdur: biri diskinizdəki fayl, digəri yaza bilmədiyiniz bazadakı sətirdir. |
 
 [Issue açın](https://github.com/veax-project/claude-cairn/issues/new/choose) — xüsusən də Mac istifadə edirsinizsə.
 

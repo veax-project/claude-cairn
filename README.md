@@ -243,7 +243,7 @@ A first release. Verified end to end on Windows: **23 conversations that had
 been invisible for weeks came back** into the sidebar after a restart, and
 every entry Cairn wrote was accepted.
 
-21 automated tests, including one that replays the interface onto a simulated
+28 automated tests, including one that replays the interface onto a simulated
 terminal at seven window sizes to catch layout faults.
 
 | | |
@@ -252,6 +252,7 @@ terminal at seven window sizes to catch layout faults.
 | ❓ **Never run** | macOS, Linux — the code is written and reviewed, nothing more |
 | ❌ **Impossible** | Conversations Claude deleted before your first backup. Nothing brings those back. |
 | ❌ **Out of scope** | Regular claude.ai chats. Those live on Anthropic's servers and cannot be moved between accounts — a limit of the product, not of this tool. |
+| ❌ **Desktop only** | Claude Code in a browser. Cairn puts files back on *this machine*, and claude.ai lists what your account holds on Anthropic's servers — so a restored conversation returns to the desktop app and to `claude` in a terminal here, and never to the browser. Nothing can bridge the two: one is a file on your disk, the other is a row in a database you cannot write to. |
 
 [Open an issue](https://github.com/veax-project/claude-cairn/issues/new/choose) — especially if you are on a Mac.
 

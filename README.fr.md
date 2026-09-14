@@ -249,7 +249,7 @@ Une première version. Vérifiée de bout en bout sur Windows : **23 conversatio
 invisibles depuis des semaines sont revenues** dans la barre latérale après un
 redémarrage, et chaque entrée écrite par Cairn a été acceptée.
 
-21 tests automatisés, dont un qui rejoue l'interface sur un terminal simulé à
+28 tests automatisés, dont un qui rejoue l'interface sur un terminal simulé à
 sept tailles de fenêtre pour repérer les défauts de mise en page.
 
 | | |
@@ -258,6 +258,7 @@ sept tailles de fenêtre pour repérer les défauts de mise en page.
 | ❓ **Jamais lancé** | macOS, Linux — le code est écrit et relu, rien de plus |
 | ❌ **Impossible** | Les conversations que Claude a supprimées avant votre première sauvegarde. Rien ne les ramène. |
 | ❌ **Hors périmètre** | Les discussions claude.ai classiques. Elles vivent sur les serveurs d'Anthropic et ne peuvent pas être déplacées entre comptes — une limite du produit, pas de cet outil. |
+| ❌ **Bureau uniquement** | Claude Code dans un navigateur. Cairn repose des fichiers sur *cette machine*, alors que claude.ai affiche ce que votre compte contient sur les serveurs d'Anthropic — une conversation restaurée revient donc dans l'application de bureau et dans `claude` lancé ici en terminal, jamais dans le navigateur. Rien ne peut relier les deux : d'un côté un fichier sur votre disque, de l'autre une ligne dans une base où vous n'écrivez pas. |
 
 [Ouvrir un ticket](https://github.com/veax-project/claude-cairn/issues/new/choose) — surtout si vous êtes sur un Mac.
 
