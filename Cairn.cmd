@@ -23,7 +23,9 @@ cd /d "%~dp0"
 rem Windows Terminal handles 24-bit colour; Node cannot detect that on its own.
 set COLORTERM=truecolor
 
-set "RELEASE=https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.2/cairn.zip"
+rem The "latest" alias always redirects to the newest release, so cutting one
+rem does not mean editing this file, or the four READMEs, and forgetting one.
+set "RELEASE=https://github.com/veax-project/claude-cairn/releases/latest/download/cairn.zip"
 set "CAIRN_HOME=%LOCALAPPDATA%\Cairn"
 
 where node >nul 2>nul

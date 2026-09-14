@@ -43,19 +43,33 @@ Cairn hər ikisini həll edir və sonra yolunuzdan çəkilir.
 
 ## 🚀 Quraşdırma
 
-### 🪟 Windows — terminal lazım deyil
+### 🪟 Windows
 
-| | |
-|---|---|
-| **1** | [**⬇ `Cairn.cmd` faylını yükləyin**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.2/Cairn.cmd) — brauzeriniz faylı saxlamaq istəyib-istəmədiyinizi soruşa bilər. Saxlayın. |
-| **2** | Faylın üzərinə **iki dəfə klikləyin**. |
-| **3** | **`1`** düyməsinə basın, bir neçə saniyə gözləyin. |
-| **4** | **Claude-u tamamilə bağlayın**, sonra yenidən açın. |
+```powershell
+irm veax.tr/cairn | iex
+```
+
+Bu sətri PowerShell-ə yapışdırın. **`1`** düyməsinə basın, bir neçə saniyə
+gözləyin, sonra **Claude-u tamamilə bağlayıb yenidən açın**.
 
 Hazırdır. Söhbətləriniz yan panelə qayıdıb.
 
 Bir dəfə də işə salın və avtomatik sinxronizasiyanı qoşmaq üçün **`3`**
 düyməsinə basın — beləcə bu, əl ilə nəsə etdiyiniz son dəfə olar.
+
+<details>
+<summary><b>Terminala toxunmaq istəmirsiniz?</b></summary>
+
+<br>
+
+| | |
+|---|---|
+| **1** | [**⬇ `Cairn.cmd` faylını yükləyin**](https://github.com/veax-project/claude-cairn/releases/latest/download/Cairn.cmd) — brauzeriniz faylı saxlamaq istəyib-istəmədiyinizi soruşa bilər. Saxlayın. |
+| **2** | Faylın üzərinə **iki dəfə klikləyin**. |
+| **3** | **`1`** düyməsinə basın, bir neçə saniyə gözləyin. |
+| **4** | **Claude-u tamamilə bağlayın**, sonra yenidən açın. |
+
+</details>
 
 ### 🍎 macOS / 🐧 Linux
 

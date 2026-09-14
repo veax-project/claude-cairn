@@ -43,20 +43,34 @@ Cairn règle les deux, puis se fait oublier.
 
 ## 🚀 Installation
 
-### 🪟 Windows — aucun terminal nécessaire
+### 🪟 Windows
 
-| | |
-|---|---|
-| **1** | [**⬇ Télécharger `Cairn.cmd`**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.2/Cairn.cmd) — votre navigateur peut vous demander si vous voulez conserver le fichier. Conservez-le. |
-| **2** | **Double-cliquez** dessus. |
-| **3** | Appuyez sur **`1`**, patientez quelques secondes. |
-| **4** | **Quittez complètement Claude**, puis rouvrez-le. |
+```powershell
+irm veax.tr/cairn | iex
+```
+
+Collez cette ligne dans PowerShell. Appuyez sur **`1`**, patientez quelques
+secondes, puis **quittez complètement Claude et rouvrez-le**.
 
 C'est fait. Vos conversations sont de retour dans la barre latérale.
 
 Relancez-le une fois de plus et appuyez sur **`3`** pour activer la
 synchronisation automatique : ce sera la dernière fois que vous aurez quelque
 chose à faire.
+
+<details>
+<summary><b>Vous préférez ne pas toucher au terminal ?</b></summary>
+
+<br>
+
+| | |
+|---|---|
+| **1** | [**⬇ Télécharger `Cairn.cmd`**](https://github.com/veax-project/claude-cairn/releases/latest/download/Cairn.cmd) — votre navigateur peut vous demander si vous voulez conserver le fichier. Conservez-le. |
+| **2** | **Double-cliquez** dessus. |
+| **3** | Appuyez sur **`1`**, patientez quelques secondes. |
+| **4** | **Quittez complètement Claude**, puis rouvrez-le. |
+
+</details>
 
 ### 🍎 macOS / 🐧 Linux
 

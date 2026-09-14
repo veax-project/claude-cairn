@@ -43,19 +43,33 @@ Cairn ikisini de çözer, sonra yolunuzdan çekilir.
 
 ## 🚀 Kurulum
 
-### 🪟 Windows — terminale gerek yok
+### 🪟 Windows
 
-| | |
-|---|---|
-| **1** | [**⬇ `Cairn.cmd` dosyasını indirin**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.2/Cairn.cmd) — tarayıcınız dosyayı saklamak isteyip istemediğinizi sorabilir. Saklayın. |
-| **2** | Dosyaya **çift tıklayın**. |
-| **3** | **`1`** tuşuna basın, birkaç saniye bekleyin. |
-| **4** | **Claude'dan tamamen çıkın**, sonra yeniden açın. |
+```powershell
+irm veax.tr/cairn | iex
+```
+
+Bu satırı PowerShell'e yapıştırın. **`1`** tuşuna basın, birkaç saniye bekleyin,
+sonra **Claude'dan tamamen çıkıp yeniden açın**.
 
 Bitti. Konuşmalarınız kenar çubuğuna geri geldi.
 
 Bir kez daha çalıştırıp **`3`** tuşuna basın, otomatik eşitleme açılsın; böylece
 bir daha bu işle uğraşmanız gerekmez.
+
+<details>
+<summary><b>Terminale hiç dokunmak istemiyor musunuz?</b></summary>
+
+<br>
+
+| | |
+|---|---|
+| **1** | [**⬇ `Cairn.cmd` dosyasını indirin**](https://github.com/veax-project/claude-cairn/releases/latest/download/Cairn.cmd) — tarayıcınız dosyayı saklamak isteyip istemediğinizi sorabilir. Saklayın. |
+| **2** | Dosyaya **çift tıklayın**. |
+| **3** | **`1`** tuşuna basın, birkaç saniye bekleyin. |
+| **4** | **Claude'dan tamamen çıkın**, sonra yeniden açın. |
+
+</details>
 
 ### 🍎 macOS / 🐧 Linux
 

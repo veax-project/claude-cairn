@@ -43,19 +43,33 @@ Cairn fixes both, then gets out of the way.
 
 ## 🚀 Install
 
-### 🪟 Windows — no terminal needed
+### 🪟 Windows
 
-| | |
-|---|---|
-| **1** | [**⬇ Download `Cairn.cmd`**](https://github.com/veax-project/claude-cairn/releases/download/v1.0.0-beta.2/Cairn.cmd) — your browser may ask whether to keep the file. Keep it. |
-| **2** | **Double-click** it. |
-| **3** | Press **`1`**, wait a few seconds. |
-| **4** | **Quit Claude completely**, then open it again. |
+```powershell
+irm veax.tr/cairn | iex
+```
+
+Paste that into PowerShell. Press **`1`**, wait a few seconds, then **quit
+Claude completely and open it again**.
 
 Done. Your conversations are back in the sidebar.
 
 Run it once more and press **`3`** to turn on automatic sync, so this was the
 last time you had to do anything.
+
+<details>
+<summary><b>Rather not touch a terminal?</b></summary>
+
+<br>
+
+| | |
+|---|---|
+| **1** | [**⬇ Download `Cairn.cmd`**](https://github.com/veax-project/claude-cairn/releases/latest/download/Cairn.cmd) — your browser may ask whether to keep the file. Keep it. |
+| **2** | **Double-click** it. |
+| **3** | Press **`1`**, wait a few seconds. |
+| **4** | **Quit Claude completely**, then open it again. |
+
+</details>
 
 ### 🍎 macOS / 🐧 Linux
 
