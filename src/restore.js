@@ -75,9 +75,9 @@ function buildIndexEntry(sessionId, cliSessionId, session) {
     effort: 'high',
     isArchived: false,
     title: session.title || `Session ${cliSessionId.slice(0, 8)}`,
-    // A title the user typed stays the user's. The star is carried too, though
-    // the app keeps its own list of pinned sessions elsewhere, so a restored
-    // star may still need one click before it shows under Pinned.
+    // A title the user typed stays the user's. The star is carried too, but
+    // the sidebar's Pinned list lives in the app's config, keyed by sessionId:
+    // what actually keeps a pin is writing the entry under its original id.
     titleSource: session.titleSource === 'user' ? 'user' : 'auto',
     // Written only when set, because that is what the app does: of the 1719
     // entries on the machine this was found on, the 16 carrying the field were
@@ -295,7 +295,13 @@ export function mirror(options = {}) {
     if (!dryRun) fs.mkdirSync(folder.dir, { recursive: true })
 
     for (const session of missing) {
-      const sessionId = `local_${crypto.randomUUID()}`
+      // Keep the conversation's original id. The app files pins and stars in
+      // its own config by this id, globally rather than per account, so a
+      // fresh id turned every pinned conversation into an unpinned copy.
+      // Account folders never see each other, so the same id in two of them
+      // is how the app itself would have it.
+      const reuse = session.sessionId && !fs.existsSync(path.join(folder.dir, `${session.sessionId}.json`))
+      const sessionId = reuse ? session.sessionId : `local_${crypto.randomUUID()}`
       const file = path.join(folder.dir, `${sessionId}.json`)
       if (!dryRun) {
         writeJson(file, buildIndexEntry(sessionId, session.cliSessionId, session))

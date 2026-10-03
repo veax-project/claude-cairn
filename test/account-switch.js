@@ -57,6 +57,14 @@ const saved = listVault(vault)
 assert.ok(saved.length > 0, 'the vault must hold the conversations from before')
 console.log(`  ok  ${saved.length} conversations waiting in the vault`)
 
+// A backup records the id each conversation had in the sidebar it came from.
+// The app's pins point at that id, so it is the one the new account must get.
+const manifestFile = path.join(vault, 'manifest.json')
+const manifest = JSON.parse(fs.readFileSync(manifestFile, 'utf8'))
+const donorId = (id) => `local_${ACCOUNTS[0].account.slice(0, 8)}_${id}`
+for (const [id, session] of Object.entries(manifest.sessions)) session.sessionId = donorId(id)
+fs.writeFileSync(manifestFile, JSON.stringify(manifest, null, 2))
+
 // ── the recovery ────────────────────────────────────────────────────────────
 
 const { mirror } = await import('../src/restore.js')
@@ -76,6 +84,13 @@ assert.equal(
   `expected every saved conversation to be filed, got ${written.length} of ${saved.length}`
 )
 console.log(`  ok  filed all ${written.length} conversations under the new account`)
+
+const renamed = written.filter((name) => {
+  const entry = JSON.parse(fs.readFileSync(path.join(targetDir, name), 'utf8'))
+  return name !== `${donorId(entry.cliSessionId)}.json` || entry.sessionId !== donorId(entry.cliSessionId)
+})
+assert.deepEqual(renamed.slice(0, 3), [], 'a conversation lost its id, and with it its pin')
+console.log('  ok  every conversation keeps the id its pin points at')
 
 // ── would Claude accept them? ───────────────────────────────────────────────
 // Compared against an entry the fixture wrote as the app itself would.
@@ -157,5 +172,23 @@ for (const slug of fs.readdirSync(projects)) {
 assert.equal(restored, removed, `Claude deleted ${removed} conversations, only ${restored} came back`)
 console.log(`  ok  put back all ${restored} conversations the 30-day cleanup had deleted`)
 
+// ── the packaged build ──────────────────────────────────────────────────────
+// The MSIX app keeps %APPDATA%\Claude inside its package container. Seen from
+// an ordinary terminal, the plain folder is empty and every account vanishes.
+
+let passed = 9
+if (process.platform === 'win32') {
+  const { appDataDir } = await import('../src/paths.js')
+  const { currentAccount } = await import('../src/scan.js')
+  const roaming = path.join(path.dirname(appData), 'Local', 'Packages', 'Claude_pzs8sxrjxfjjc', 'LocalCache', 'Roaming')
+  fs.mkdirSync(roaming, { recursive: true })
+  fs.renameSync(path.join(appData, 'Claude'), path.join(roaming, 'Claude'))
+
+  assert.equal(appDataDir(), path.join(roaming, 'Claude'), 'the package container was not found')
+  assert.equal(currentAccount()?.accountUuid, NEW_ACCOUNT, 'the account inside the container was not read')
+  console.log('  ok  finds the packaged app\'s data from outside its container')
+  passed++
+}
+
 fs.rmSync(fixture.root, { recursive: true, force: true })
-console.log('\n  7 passed — a brand-new account recovers everything\n')
+console.log(`\n  ${passed} passed — a brand-new account recovers everything\n`)

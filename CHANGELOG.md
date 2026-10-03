@@ -4,6 +4,28 @@
 > modify it freely; a modified version you distribute must stay open under the
 > same terms.
 
+## Unreleased
+
+Found on a Windows machine running the packaged (MSIX) Claude Desktop: Cairn
+started from a normal PowerShell said "not signed in to Claude", synced
+nothing, and still reported that every account already had everything. Run
+from a terminal inside Claude, the same sync then filed 189 conversations, and
+the 14 pinned ones all came back unpinned.
+
+### Fixed
+
+- **The packaged Claude Desktop is found from any terminal.** The MSIX app's
+  `%APPDATA%\Claude` really lives in
+  `%LOCALAPPDATA%\Packages\Claude_<publisher>\LocalCache\Roaming\Claude`, and
+  only processes Claude itself starts are shown it under the usual path.
+  Everything else, including the autostart task, read the plain folder and
+  found no account at all. Cairn now looks in the package container first.
+- **Pins survive a sync.** The sidebar's Pinned list is kept in the app's own
+  config, keyed by each conversation's `sessionId`. Sync gave every copy a
+  fresh id, so no pin ever matched a copy. Copies now keep the original id,
+  which the backup already recorded; a new one is minted only if that file
+  name is already taken in the target folder.
+
 ## 1.0.0-beta.2
 
 A restored sidebar looked right at a glance and wrong on inspection: the
