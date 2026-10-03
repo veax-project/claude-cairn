@@ -26,13 +26,49 @@ import fs from 'node:fs'
 export function appDataDir() {
   if (process.platform === 'win32') {
     const appData = process.env.APPDATA || path.join(os.homedir(), 'AppData', 'Roaming')
-    return path.join(appData, 'Claude')
+    return packagedAppDataDir(appData) || path.join(appData, 'Claude')
   }
   if (process.platform === 'darwin') {
     return path.join(os.homedir(), 'Library', 'Application Support', 'Claude')
   }
   const xdg = process.env.XDG_CONFIG_HOME || path.join(os.homedir(), '.config')
   return path.join(xdg, 'Claude')
+}
+
+/**
+ * Where the MSIX build of Claude Desktop really keeps %APPDATA%\Claude.
+ *
+ * The packaged app has its writes to %APPDATA% redirected into
+ * %LOCALAPPDATA%\Packages\Claude_<publisher>\LocalCache\Roaming. Only the app
+ * and the processes it spawns see that copy under the usual path; a terminal
+ * opened from the Start menu sees the plain %APPDATA%\Claude, which is empty
+ * or stale. Cairn run from there found no account, synced nothing, and
+ * reported "every account already had everything".
+ *
+ * The container path is readable from both sides, so it is used whenever it
+ * exists. It is found next to %APPDATA% rather than through %LOCALAPPDATA% so
+ * that a test pointing APPDATA at a fixture never reaches the real machine.
+ */
+function packagedAppDataDir(appData) {
+  const packages = path.join(path.dirname(appData), 'Local', 'Packages')
+  let names
+  try {
+    names = fs.readdirSync(packages).filter((n) => /^Claude_[a-z0-9]+$/i.test(n))
+  } catch {
+    return null
+  }
+
+  // Several only after a reinstall under a new publisher; the live one is the
+  // one Claude touched last.
+  const found = names
+    .map((n) => path.join(packages, n, 'LocalCache', 'Roaming', 'Claude'))
+    .map((dir) => {
+      try { return { dir, at: fs.statSync(path.join(dir, 'config.json')).mtimeMs } } catch { return null }
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.at - a.at)
+
+  return found[0]?.dir || null
 }
 
 /** Root of the Claude Code CLI data directory (holds the transcripts). */
